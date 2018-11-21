@@ -1,0 +1,1362 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{CIVL556\_Term\_Project}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{civl-556-term-project-workbook}{%
+\section{CIVL 556 Term Project
+Workbook}\label{civl-556-term-project-workbook}}
+
+\hypertarget{optimization-of-combined-diesel-power-and-pumped-storage}{%
+\subsection{Optimization of Combined Diesel Power and Pumped
+Storage}\label{optimization-of-combined-diesel-power-and-pumped-storage}}
+
+Dan Kovacek, Peter Mott, Daniel Ojokutu
+
+\hypertarget{introduction}{%
+\subsubsection{Introduction}\label{introduction}}
+
+Although the population of British Columbia is highly concentrated along
+the southern border, many communities across the province are far from
+existing electrical distribution infrastructure. These small communities
+rely on diesel generators for electricity. Figure 1 shows the BC Hydro
+transmission infrastructure, while Figure 2 shows a closer look at BC's
+Central Coast where a number of grid-isolated communities are located.
+
+\begin{figure}
+\centering
+\includegraphics{images/transmission.jpg}
+\caption{Figure 1: BC Hydro Transmission Infrastructure}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{images/remote_communities.jpg}
+\caption{Figure 2: Grid-Isolated Communities on the Central Coast of BC}
+\end{figure}
+
+    \hypertarget{motivation}{%
+\subsection{Motivation}\label{motivation}}
+
+The cost of diesel supply is high and variable, and the vast majority of
+the cost of electricity supply over the life of a thermal generation
+plant is associated with the cost of fuel supply. Even with renewable
+energy, diesel backup generation is still required. Diverse energy
+sources can be more cost effective and reliable. The goal of this study
+is to determine the smallest (lowest capex) pumped storage scheme that
+could be coupled to an existing diesel power generation plant to
+minimize the cost of electricity supply. The problem may be addressed as
+a multi-objective linear programming problem with several constraints.
+
+\hypertarget{objective-function}{%
+\subsection{Objective Function}\label{objective-function}}
+
+Minimize:
+\[C_{total} = C_{diesel}(P_{diesel} \cdot E_{diesel}) + C_{pumped storage}*P_{pumped storage}\]
+
+Where: * \textbf{Ctotal} is the adjusted annual cost of energy supply
+over some time period (20, 40 years, etc.) * \textbf{Cdiesel} is the
+adjusted annual cost of supplying energy derived from diesel, as a
+function of demand and plant efficency. * \textbf{Pdiesel} diesel
+electricity demand (as a function of time) * \textbf{Ediesel} is the
+diesel efficiency curve * \textbf{Cpumped storage} is some rated cost
+factor of a pumped storage system (dollars/MW) * \textbf{Ppumped
+storage} is the adjusted annual cost installed capacity of pumped
+storage plant
+
+Subject to:
+
+\[P_{pumped storage} + P_{diesel} >= P_{peak demand}\]
+\[P_{pumped storage}, P_{diesel} >= 0\]
+
+The volume available for power generation must be greater than some
+minimum threshold: \[V_{available} >= V_{min reservoir}\]
+
+Installed diesel \textgreater{}= some minimum capacity for essential
+services. \[P_{diesel} >= P_{min required}\]
+
+    \hypertarget{site-alternatives}{%
+\section{Site Alternatives}\label{site-alternatives}}
+
+Transmission lines are assumed to be a fixed cost, however a long
+transmission line for a small hydro project could by itself make the
+project infeasible. As a result, we limited our search to within a 15 km
+radius of Anahim Lake.
+
+\begin{figure}
+\centering
+\includegraphics{images/Project_GA.jpg}
+\caption{Figure 3: Project Locations}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{images/Option-1.jpg}
+\caption{Figure 4: Project Locations}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{images/Option1-profile.jpg}
+\caption{Figure 5: Site 1 Profile}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{images/Option-2.jpg}
+\caption{Figure 6: Project Locations}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{images/Option2-profile.jpg}
+\caption{Figure 7: Site 2 Profile}
+\end{figure}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{class} \PY{n+nc}{Site}\PY{p}{(}\PY{n+nb}{object}\PY{p}{)}\PY{p}{:}
+            \PY{n}{name} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}
+            \PY{n}{intake\PYZus{}el} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{n}{ph\PYZus{}el} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{n}{head} \PY{o}{=} \PY{n}{intake\PYZus{}el} \PY{o}{\PYZhy{}} \PY{n}{ph\PYZus{}el}
+            \PY{n}{dist\PYZus{}to\PYZus{}AL} \PY{o}{=} \PY{k+kc}{None}
+            \PY{n}{IN\PYZus{}DAC} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{n}{PH\PYZus{}DAC} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{n}{in\PYZus{}vol} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{n}{ph\PYZus{}vol} \PY{o}{=} \PY{l+m+mi}{0}
+            
+            \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{name}\PY{p}{,} \PY{n}{intake\PYZus{}el}\PY{p}{,} \PY{n}{ph\PYZus{}el}\PY{p}{,} \PY{n}{penstock\PYZus{}len}\PY{p}{,} 
+                         \PY{n}{dist\PYZus{}to\PYZus{}AL}\PY{p}{,} \PY{n}{DAC\PYZus{}intake}\PY{p}{,} \PY{n}{DAC\PYZus{}ph}\PY{p}{,} \PY{n}{in\PYZus{}vol}\PY{p}{,} \PY{n}{ph\PYZus{}vol}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{name} \PY{o}{=} \PY{n}{name}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{intake\PYZus{}el} \PY{o}{=} \PY{n}{intake\PYZus{}el}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{ph\PYZus{}el} \PY{o}{=} \PY{n}{ph\PYZus{}el}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{head} \PY{o}{=} \PY{n}{intake\PYZus{}el} \PY{o}{\PYZhy{}} \PY{n}{ph\PYZus{}el}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dist\PYZus{}to\PYZus{}AL} \PY{o}{=} \PY{n}{dist\PYZus{}to\PYZus{}AL}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{IN\PYZus{}DAC} \PY{o}{=} \PY{n}{DAC\PYZus{}intake}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{PH\PYZus{}DAC} \PY{o}{=} \PY{n}{DAC\PYZus{}ph}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{in\PYZus{}vol} \PY{o}{=} \PY{n}{in\PYZus{}vol}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{ph\PYZus{}vol} \PY{o}{=} \PY{n}{ph\PYZus{}vol}
+                    
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{site\PYZus{}options} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+        \PY{n}{site\PYZus{}options}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{Site}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Site 1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1253}\PY{p}{,} \PY{l+m+mi}{1126}\PY{p}{,} \PY{l+m+mf}{2.9}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+        \PY{n}{site\PYZus{}options}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{Site}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Site 2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1214}\PY{p}{,} \PY{l+m+mi}{1134}\PY{p}{,} \PY{l+m+mf}{3.1}\PY{p}{,} \PY{l+m+mf}{8.5}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        
+        
+        \PY{n}{keys} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{vars}\PY{p}{(}\PY{n}{site\PYZus{}options}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n}{s1} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{key}\PY{p}{:} \PY{n}{value} \PY{k}{for} \PY{n}{key}\PY{p}{,} 
+              \PY{n}{value} \PY{o+ow}{in} \PY{n}{site\PYZus{}options}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n+nv+vm}{\PYZus{}\PYZus{}dict\PYZus{}\PYZus{}}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)} \PY{k}{if} \PY{o+ow}{not} \PY{n}{key}\PY{o}{.}\PY{n}{startswith}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZus{}\PYZus{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{\PYZcb{}}
+        \PY{n}{s2} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{key}\PY{p}{:} \PY{n}{value} \PY{k}{for} \PY{n}{key}\PY{p}{,} 
+              \PY{n}{value} \PY{o+ow}{in} \PY{n}{site\PYZus{}options}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n+nv+vm}{\PYZus{}\PYZus{}dict\PYZus{}\PYZus{}}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)} \PY{k}{if} \PY{o+ow}{not} \PY{n}{key}\PY{o}{.}\PY{n}{startswith}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZus{}\PYZus{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{\PYZcb{}}
+        
+        \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{s1}\PY{p}{,} \PY{n}{s2}\PY{p}{]}\PY{p}{,} \PY{n}{ignore\PYZus{}index}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{sort}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+        \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{reindex}\PY{p}{(}\PY{n+nb}{sorted}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+        
+        \PY{n}{df}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IN [dVol/m]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PH [dVol/m]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distance to AL [km]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Head [m]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Intake Vol [Mcm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Intake El [masl]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PH El. [masl]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PH Vol [Mcm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{p}{]}
+        \PY{n}{cols} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Intake El [masl]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PH El. [masl]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Head [m]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Intake Vol [Mcm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PH Vol [Mcm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IN [dVol/m]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PH [dVol/m]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distance to AL [km]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{n}{cols}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{dac\PYZus{}dict} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+        \PY{n}{dac\PYZus{}dict}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IN\PYZus{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{1214}\PY{p}{:} \PY{l+m+mi}{0}\PY{p}{,}
+                            \PY{l+m+mi}{1215}\PY{p}{:} \PY{l+m+mi}{600}\PY{o}{*}\PY{l+m+mi}{500}\PY{o}{*}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mf}{1E6}\PY{p}{,}
+                            \PY{l+m+mi}{1216}\PY{p}{:} \PY{l+m+mi}{600}\PY{o}{*}\PY{l+m+mi}{500}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{/}\PY{l+m+mf}{1E6}\PY{p}{,}
+                            \PY{l+m+mi}{1217}\PY{p}{:} \PY{l+m+mi}{600}\PY{o}{*}\PY{l+m+mi}{500}\PY{o}{*}\PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mf}{1E6}\PY{p}{,}
+                           \PY{p}{\PYZcb{}}
+        \PY{n}{dac\PYZus{}dict}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PH\PYZus{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{1134}\PY{p}{:} \PY{l+m+mi}{0}\PY{p}{,}
+                            \PY{l+m+mi}{1135}\PY{p}{:} \PY{l+m+mi}{1700}\PY{o}{*}\PY{l+m+mi}{750}\PY{o}{*}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mf}{1E6}\PY{p}{,}
+                            \PY{l+m+mi}{1136}\PY{p}{:} \PY{l+m+mi}{1700}\PY{o}{*}\PY{l+m+mi}{750}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{/}\PY{l+m+mf}{1E6}\PY{p}{,}
+                            \PY{l+m+mi}{1137}\PY{p}{:} \PY{l+m+mi}{1700}\PY{o}{*}\PY{l+m+mi}{750}\PY{o}{*}\PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mf}{1E6}\PY{p}{,}
+                           \PY{p}{\PYZcb{}}
+        
+        \PY{n}{dac\PYZus{}dict}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IN\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{1253}\PY{p}{:} \PY{l+m+mi}{0}\PY{p}{,}
+                            \PY{l+m+mi}{1254}\PY{p}{:} \PY{l+m+mi}{1000}\PY{o}{*}\PY{l+m+mi}{150}\PY{o}{*}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mf}{1E6}\PY{p}{,}
+                            \PY{l+m+mi}{1255}\PY{p}{:} \PY{l+m+mi}{1000}\PY{o}{*}\PY{l+m+mi}{150}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{/}\PY{l+m+mf}{1E6}\PY{p}{,}
+                            \PY{l+m+mi}{1256}\PY{p}{:} \PY{l+m+mi}{1000}\PY{o}{*}\PY{l+m+mi}{150}\PY{o}{*}\PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mf}{1E6}\PY{p}{,}
+                            \PY{l+m+mi}{1257}\PY{p}{:} \PY{l+m+mi}{1000}\PY{o}{*}\PY{l+m+mi}{150}\PY{o}{*}\PY{l+m+mi}{4}\PY{o}{/}\PY{l+m+mf}{1E6}\PY{p}{,}
+                            \PY{l+m+mi}{1258}\PY{p}{:} \PY{l+m+mi}{1000}\PY{o}{*}\PY{l+m+mi}{150}\PY{o}{*}\PY{l+m+mi}{5}\PY{o}{/}\PY{l+m+mf}{1E6}\PY{p}{,}
+                           \PY{p}{\PYZcb{}}
+        \PY{n}{dac\PYZus{}dict}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PH\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{1126}\PY{p}{:} \PY{l+m+mi}{0}\PY{p}{,}
+                            \PY{l+m+mi}{1127}\PY{p}{:} \PY{l+m+mi}{800}\PY{o}{*}\PY{l+m+mi}{500}\PY{o}{*}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mf}{1E6}\PY{p}{,}
+                           \PY{p}{\PYZcb{}}
+            
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{bokeh}
+        \PY{k+kn}{from} \PY{n+nn}{bokeh}\PY{n+nn}{.}\PY{n+nn}{plotting} \PY{k}{import} \PY{n}{figure}\PY{p}{,} \PY{n}{output\PYZus{}file}\PY{p}{,} \PY{n}{show}
+        \PY{k+kn}{from} \PY{n+nn}{bokeh}\PY{n+nn}{.}\PY{n+nn}{models} \PY{k}{import} \PY{n}{ColumnDataSource}
+        \PY{k+kn}{from} \PY{n+nn}{bokeh}\PY{n+nn}{.}\PY{n+nn}{io} \PY{k}{import} \PY{n}{output\PYZus{}file}\PY{p}{,} \PY{n}{output\PYZus{}notebook}\PY{p}{,} \PY{n}{push\PYZus{}notebook}\PY{p}{,} \PY{n}{save}
+        \PY{k+kn}{from} \PY{n+nn}{bokeh}\PY{n+nn}{.}\PY{n+nn}{models}\PY{n+nn}{.}\PY{n+nn}{widgets} \PY{k}{import} \PY{n}{Select}
+        \PY{k+kn}{from} \PY{n+nn}{bokeh}\PY{n+nn}{.}\PY{n+nn}{layouts} \PY{k}{import} \PY{n}{widgetbox}\PY{p}{,} \PY{n}{column}\PY{p}{,} \PY{n}{row}
+        \PY{k+kn}{from} \PY{n+nn}{bokeh}\PY{n+nn}{.}\PY{n+nn}{palettes} \PY{k}{import} \PY{n}{Viridis7}\PY{p}{,} \PY{n}{Viridis4}
+        \PY{n}{output\PYZus{}notebook}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    
+    
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{def} \PY{n+nf}{get\PYZus{}dac\PYZus{}vals}\PY{p}{(}\PY{n}{site}\PY{p}{)}\PY{p}{:}
+            \PY{n}{y} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{dac\PYZus{}dict}\PY{p}{[}\PY{n}{site}\PY{p}{]}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)} \PY{p}{)}
+            \PY{n}{max\PYZus{}el} \PY{o}{=} \PY{n+nb}{max}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+            \PY{n}{min\PYZus{}el} \PY{o}{=} \PY{n+nb}{min}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+            \PY{n}{el\PYZus{}diffs} \PY{o}{=} \PY{p}{[}\PY{n}{el} \PY{o}{\PYZhy{}} \PY{n}{min\PYZus{}el} \PY{k}{for} \PY{n}{el} \PY{o+ow}{in} \PY{n}{y}\PY{p}{]}
+            \PY{n}{normed\PYZus{}els} \PY{o}{=} \PY{p}{[}\PY{n}{e} \PY{o}{/} \PY{p}{(}\PY{n}{max\PYZus{}el} \PY{o}{\PYZhy{}} \PY{n}{min\PYZus{}el}\PY{p}{)} \PY{k}{for} \PY{n}{e} \PY{o+ow}{in} \PY{n}{el\PYZus{}diffs}\PY{p}{]}
+            \PY{n}{max\PYZus{}vol} \PY{o}{=} \PY{n+nb}{max}\PY{p}{(}\PY{p}{[}\PY{n}{dac\PYZus{}dict}\PY{p}{[}\PY{n}{site}\PY{p}{]}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{k}{for} \PY{n}{k} \PY{o+ow}{in} \PY{n}{y}\PY{p}{]}\PY{p}{)}
+            
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{site}\PY{p}{)}
+            \PY{k}{if} \PY{n}{site} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IN\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                \PY{n}{site\PYZus{}options}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{in\PYZus{}vol} \PY{o}{=} \PY{n}{max\PYZus{}vol}
+            \PY{k}{elif} \PY{n}{site} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PH\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                \PY{n}{site\PYZus{}options}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{ph\PYZus{}vol} \PY{o}{=} \PY{n}{max\PYZus{}vol}
+            \PY{k}{elif} \PY{n}{site} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IN\PYZus{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                \PY{n}{site\PYZus{}options}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{in\PYZus{}vol} \PY{o}{=} \PY{n}{max\PYZus{}vol}
+            \PY{k}{else}\PY{p}{:}
+                \PY{n}{site\PYZus{}options}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{ph\PYZus{}vol} \PY{o}{=} \PY{n}{max\PYZus{}vol}
+            
+            \PY{n}{unit\PYZus{}storage} \PY{o}{=} \PY{n}{max\PYZus{}vol} \PY{o}{/} \PY{p}{(}\PY{n}{max\PYZus{}el} \PY{o}{\PYZhy{}} \PY{n}{min\PYZus{}el}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Volume per metre live storage = }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ x1000m\PYZca{}3}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{unit\PYZus{}storage}\PY{p}{)}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Total Storage Volume = }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ x1E6 m\PYZca{}3}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{max\PYZus{}vol}\PY{p}{)}\PY{p}{)}
+            \PY{k}{return} \PY{p}{[}\PY{n}{dac\PYZus{}dict}\PY{p}{[}\PY{n}{site}\PY{p}{]}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{k}{for} \PY{n}{k} \PY{o+ow}{in} \PY{n}{y}\PY{p}{]}\PY{p}{,} \PY{n}{normed\PYZus{}els}\PY{p}{,} \PY{n}{unit\PYZus{}storage}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{output\PYZus{}notebook}\PY{p}{(}\PY{p}{)}
+        \PY{n}{dac\PYZus{}fig} \PY{o}{=} \PY{n}{figure}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Reservoir DACs for Storage Sites}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                         \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{800}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{500}\PY{p}{,}
+                        \PY{n}{x\PYZus{}axis\PYZus{}label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Storage Volume [Mcm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                         \PY{n}{y\PYZus{}axis\PYZus{}label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{} o}\PY{l+s+s1}{f Total Live Storage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{in1\PYZus{}dac} \PY{o}{=} \PY{n}{get\PYZus{}dac\PYZus{}vals}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IN\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{dac\PYZus{}fig}\PY{o}{.}\PY{n}{line}\PY{p}{(}\PY{n}{in1\PYZus{}dac}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{in1\PYZus{}dac}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} 
+                     \PY{n}{legend}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IN\PYZhy{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{Viridis7}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+        
+        \PY{n}{df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IN [dVol/m]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{in1\PYZus{}dac}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+        \PY{n}{ph1\PYZus{}dac} \PY{o}{=} \PY{n}{get\PYZus{}dac\PYZus{}vals}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PH\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{dac\PYZus{}fig}\PY{o}{.}\PY{n}{line}\PY{p}{(}\PY{n}{ph1\PYZus{}dac}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{ph1\PYZus{}dac}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} 
+                     \PY{n}{legend}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PH\PYZhy{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{Viridis7}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{line\PYZus{}dash}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dashed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PH [dVol/m]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{ph1\PYZus{}dac}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+        \PY{n}{in2\PYZus{}dac} \PY{o}{=} \PY{n}{get\PYZus{}dac\PYZus{}vals}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IN\PYZus{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{dac\PYZus{}fig}\PY{o}{.}\PY{n}{line}\PY{p}{(}\PY{n}{in2\PYZus{}dac}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{in2\PYZus{}dac}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} 
+                     \PY{n}{legend}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IN\PYZhy{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{Viridis7}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IN [dVol/m]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{in2\PYZus{}dac}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+        \PY{n}{ph2\PYZus{}dac} \PY{o}{=} \PY{n}{get\PYZus{}dac\PYZus{}vals}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PH\PYZus{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{dac\PYZus{}fig}\PY{o}{.}\PY{n}{line}\PY{p}{(}\PY{n}{ph2\PYZus{}dac}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{ph2\PYZus{}dac}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} 
+                     \PY{n}{legend}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PH\PYZhy{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{Viridis7}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{,} \PY{n}{line\PYZus{}dash}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dashed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PH [dVol/m]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{ph2\PYZus{}dac}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+        
+        \PY{n}{show}\PY{p}{(}\PY{n}{dac\PYZus{}fig}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    
+    
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+IN\_1
+Volume per metre live storage = 0.15 x1000m\^{}3
+Total Storage Volume = 0.75 x1E6 m\^{}3
+PH\_1
+Volume per metre live storage = 0.4 x1000m\^{}3
+Total Storage Volume = 0.4 x1E6 m\^{}3
+IN\_2
+Volume per metre live storage = 0.3 x1000m\^{}3
+Total Storage Volume = 0.9 x1E6 m\^{}3
+PH\_2
+Volume per metre live storage = 1.2750000000000001 x1000m\^{}3
+Total Storage Volume = 3.825 x1E6 m\^{}3
+
+    \end{Verbatim}
+
+    
+    
+    
+    
+    \hypertarget{table-1-site-characteristics-summary-table}{%
+\subsubsection{Table 1: Site Characteristics Summary
+Table}\label{table-1-site-characteristics-summary-table}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{df}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:}      Name  Intake El [masl]  PH El. [masl]  Head [m]  Intake Vol [Mcm]  \textbackslash{}
+        0  Site 1              1253           1126       127                 0   
+        1  Site 2              1214           1134        80                 0   
+        
+           PH Vol [Mcm]  IN [dVol/m]  PH [dVol/m]  Distance to AL [km]  
+        0             0         0.15        0.400                 15.0  
+        1             0         0.30        1.275                  8.5  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{s1\PYZus{}flow\PYZus{}df} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+        \PY{k}{for} \PY{n}{power} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{:}
+            \PY{n}{s1\PYZus{}flow\PYZus{}df}\PY{p}{[}\PY{n}{power}\PY{p}{]} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+            \PY{n}{s1\PYZus{}flow\PYZus{}df}\PY{p}{[}\PY{n}{power}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{flow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{power} \PY{o}{*} \PY{l+m+mi}{1000} \PY{o}{/} \PY{l+m+mf}{9.81} \PY{o}{/} \PY{l+m+mf}{0.82} \PY{o}{/} \PY{n}{site\PYZus{}options}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{head}
+            
+            \PY{c+c1}{\PYZsh{} use critical reservoir volume}
+            \PY{n}{critical\PYZus{}vol} \PY{o}{=} \PY{n+nb}{min}\PY{p}{(}\PY{n}{site\PYZus{}options}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{in\PYZus{}vol}\PY{p}{,} 
+                               \PY{n}{site\PYZus{}options}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{ph\PYZus{}vol}\PY{p}{)}
+            \PY{n}{s1\PYZus{}flow\PYZus{}df}\PY{p}{[}\PY{n}{power}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{max\PYZus{}gen\PYZus{}time [h]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=}  \PY{l+m+mf}{1E6}\PY{o}{*}\PY{n}{critical\PYZus{}vol} \PY{o}{/} \PY{n}{s1\PYZus{}flow\PYZus{}df}\PY{p}{[}\PY{n}{power}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{flow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{/} \PY{l+m+mi}{3600}
+            
+        \PY{n}{s1\PYZus{}flow\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{s1\PYZus{}flow\PYZus{}df}\PY{p}{)}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{s1\PYZus{}flow\PYZus{}df}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{names} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Power [MW]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \hypertarget{table-2-site-1-power-and-flow}{%
+\subsubsection{Table 2: Site 1 Power and
+Flow}\label{table-2-site-1-power-and-flow}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{s1\PYZus{}flow\PYZus{}df}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:}             flow  max\_gen\_time [h]
+         Power [MW]                        
+         1            1.0             113.5
+         2            2.0              56.8
+         3            2.9              37.8
+         4            3.9              28.4
+         5            4.9              22.7
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{s2\PYZus{}flow\PYZus{}df} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+         \PY{k}{for} \PY{n}{power} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{:}
+             \PY{n}{s2\PYZus{}flow\PYZus{}df}\PY{p}{[}\PY{n}{power}\PY{p}{]} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+             \PY{n}{s2\PYZus{}flow\PYZus{}df}\PY{p}{[}\PY{n}{power}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{flow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{power} \PY{o}{*} \PY{l+m+mi}{1000} \PY{o}{/} \PY{l+m+mf}{9.81} \PY{o}{/} \PY{l+m+mf}{0.82} \PY{o}{/} \PY{n}{site\PYZus{}options}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{head}
+             
+             \PY{c+c1}{\PYZsh{} use critical reservoir volume}
+             \PY{n}{critical\PYZus{}vol} \PY{o}{=} \PY{n+nb}{min}\PY{p}{(}\PY{n}{site\PYZus{}options}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{in\PYZus{}vol}\PY{p}{,} \PY{n}{site\PYZus{}options}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{ph\PYZus{}vol}\PY{p}{)}
+             \PY{n}{s2\PYZus{}flow\PYZus{}df}\PY{p}{[}\PY{n}{power}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{max\PYZus{}gen\PYZus{}time [h]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=}  \PY{l+m+mf}{1E6}\PY{o}{*}\PY{n}{critical\PYZus{}vol} \PY{o}{/} \PY{n}{s2\PYZus{}flow\PYZus{}df}\PY{p}{[}\PY{n}{power}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{flow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{/} \PY{l+m+mi}{3600}
+             
+         \PY{n}{s2\PYZus{}flow\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{s2\PYZus{}flow\PYZus{}df}\PY{p}{)}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{s2\PYZus{}flow\PYZus{}df}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{names} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Power [MW]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \hypertarget{table-3-site-2-power-and-flow}{%
+\subsubsection{Table 3: Site 2 Power and
+Flow}\label{table-3-site-2-power-and-flow}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{s2\PYZus{}flow\PYZus{}df}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:}             flow  max\_gen\_time [h]
+         Power [MW]                        
+         1            1.6             160.9
+         2            3.1              80.4
+         3            4.7              53.6
+         4            6.2              40.2
+         5            7.8              32.2
+\end{Verbatim}
+            
+    \begin{figure}
+\centering
+\includegraphics{images/decload.png}
+\caption{December Load}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{images/marchload.png}
+\caption{March Load}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{images/junload.png}
+\caption{June Load}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{images/septload.png}
+\caption{September Load}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{images/fuel.png}
+\caption{Fuel and Existing Capacity}
+\end{figure}
+
+The image above suggests Anahim Lake used roughly 85,000 L of diesel.
+From the BC Hydro technical report on Anahim Lake, the average
+electricity consumption for Anahim Lake over 2002 and 2003 was 6.9 GWh.
+A Ballpark peak fuel efficiency for diesel power is roughly 3.5 kWh/L
+(for generators in the range of 200-460kW). (ACEP, 2017) Assuming a fuel
+efficiency of 3.5 kWh/L suggests the 2002-2003 fuel consumption was in
+the order of 2M L.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{} Hourly demand by season}
+         \PY{n}{DEMAND} \PY{o}{=} \PY{p}{\PYZob{}}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Winter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{\PYZob{}}
+                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{1075}\PY{p}{,} \PY{l+m+mi}{1100}\PY{p}{,} \PY{l+m+mi}{1120}\PY{p}{,} \PY{l+m+mi}{1100}\PY{p}{,} \PY{l+m+mi}{1080}\PY{p}{,} \PY{l+m+mi}{1110}\PY{p}{,}
+                       \PY{l+m+mi}{1200}\PY{p}{,} \PY{l+m+mi}{1280}\PY{p}{,} \PY{l+m+mi}{1320}\PY{p}{,} \PY{l+m+mi}{1380}\PY{p}{,} \PY{l+m+mi}{1360}\PY{p}{,} \PY{l+m+mi}{1400}\PY{p}{,}
+                       \PY{l+m+mi}{1310}\PY{p}{,} \PY{l+m+mi}{1210}\PY{p}{,} \PY{l+m+mi}{1210}\PY{p}{,} \PY{l+m+mi}{1180}\PY{p}{,} \PY{l+m+mi}{1200}\PY{p}{,} \PY{l+m+mi}{1320}\PY{p}{,}
+                       \PY{l+m+mi}{1300}\PY{p}{,} \PY{l+m+mi}{1300}\PY{p}{,} \PY{l+m+mi}{1290}\PY{p}{,} \PY{l+m+mi}{1200}\PY{p}{,} \PY{l+m+mi}{1200}\PY{p}{,} \PY{l+m+mi}{1110}\PY{p}{]}\PY{p}{,}
+                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{L}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{880}\PY{p}{,} \PY{l+m+mi}{860}\PY{p}{,} \PY{l+m+mi}{810}\PY{p}{,} \PY{l+m+mi}{900}\PY{p}{,} \PY{l+m+mi}{900}\PY{p}{,} \PY{l+m+mi}{1060}\PY{p}{,}
+                       \PY{l+m+mi}{1100}\PY{p}{,} \PY{l+m+mi}{1150}\PY{p}{,} \PY{l+m+mi}{1200}\PY{p}{,} \PY{l+m+mi}{1250}\PY{p}{,} \PY{l+m+mi}{1080}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,}
+                       \PY{l+m+mi}{990}\PY{p}{,} \PY{l+m+mi}{900}\PY{p}{,} \PY{l+m+mi}{920}\PY{p}{,} \PY{l+m+mi}{980}\PY{p}{,} \PY{l+m+mi}{1100}\PY{p}{,} \PY{l+m+mi}{1190}\PY{p}{,}
+                       \PY{l+m+mi}{1280}\PY{p}{,} \PY{l+m+mi}{1040}\PY{p}{,} \PY{l+m+mi}{1040}\PY{p}{,} \PY{l+m+mi}{1020}\PY{p}{,} \PY{l+m+mi}{980}\PY{p}{,} \PY{l+m+mi}{900}\PY{p}{]}
+             \PY{p}{\PYZcb{}}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Spring}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{\PYZob{}}
+                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{810}\PY{p}{,} \PY{l+m+mi}{800}\PY{p}{,} \PY{l+m+mi}{760}\PY{p}{,} \PY{l+m+mi}{980}\PY{p}{,} \PY{l+m+mi}{900}\PY{p}{,} \PY{l+m+mi}{880}\PY{p}{,}
+                       \PY{l+m+mi}{1040}\PY{p}{,} \PY{l+m+mi}{1020}\PY{p}{,} \PY{l+m+mi}{1040}\PY{p}{,} \PY{l+m+mi}{980}\PY{p}{,} \PY{l+m+mi}{950}\PY{p}{,} \PY{l+m+mi}{910}\PY{p}{,}
+                       \PY{l+m+mi}{870}\PY{p}{,} \PY{l+m+mi}{840}\PY{p}{,} \PY{l+m+mi}{840}\PY{p}{,} \PY{l+m+mi}{840}\PY{p}{,} \PY{l+m+mi}{960}\PY{p}{,} \PY{l+m+mi}{980}\PY{p}{,}
+                       \PY{l+m+mi}{1020}\PY{p}{,} \PY{l+m+mi}{980}\PY{p}{,} \PY{l+m+mi}{920}\PY{p}{,} \PY{l+m+mi}{900}\PY{p}{,} \PY{l+m+mi}{840}\PY{p}{,} \PY{l+m+mi}{810}\PY{p}{]}\PY{p}{,}
+                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{L}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{650}\PY{p}{,} \PY{l+m+mi}{680}\PY{p}{,} \PY{l+m+mi}{660}\PY{p}{,} \PY{l+m+mi}{620}\PY{p}{,} \PY{l+m+mi}{690}\PY{p}{,} \PY{l+m+mi}{740}\PY{p}{,}
+                       \PY{l+m+mi}{730}\PY{p}{,} \PY{l+m+mi}{800}\PY{p}{,} \PY{l+m+mi}{740}\PY{p}{,} \PY{l+m+mi}{850}\PY{p}{,} \PY{l+m+mi}{790}\PY{p}{,} \PY{l+m+mi}{800}\PY{p}{,}
+                       \PY{l+m+mi}{760}\PY{p}{,} \PY{l+m+mi}{730}\PY{p}{,} \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{720}\PY{p}{,} \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{720}\PY{p}{,}
+                       \PY{l+m+mi}{760}\PY{p}{,} \PY{l+m+mi}{840}\PY{p}{,} \PY{l+m+mi}{760}\PY{p}{,} \PY{l+m+mi}{780}\PY{p}{,} \PY{l+m+mi}{640}\PY{p}{,} \PY{l+m+mi}{640}\PY{p}{]}\PY{p}{,}
+             \PY{p}{\PYZcb{}}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Summer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{\PYZob{}}
+                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{480}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{520}\PY{p}{,} \PY{l+m+mi}{650}\PY{p}{,}
+                       \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{820}\PY{p}{,} \PY{l+m+mi}{780}\PY{p}{,} \PY{l+m+mi}{800}\PY{p}{,} \PY{l+m+mi}{900}\PY{p}{,} \PY{l+m+mi}{800}\PY{p}{,}
+                       \PY{l+m+mi}{840}\PY{p}{,} \PY{l+m+mi}{820}\PY{p}{,} \PY{l+m+mi}{820}\PY{p}{,} \PY{l+m+mi}{800}\PY{p}{,} \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{680}\PY{p}{,}
+                       \PY{l+m+mi}{650}\PY{p}{,} \PY{l+m+mi}{650}\PY{p}{,} \PY{l+m+mi}{620}\PY{p}{,} \PY{l+m+mi}{660}\PY{p}{,} \PY{l+m+mi}{620}\PY{p}{,} \PY{l+m+mi}{520}\PY{p}{]}\PY{p}{,}
+                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{L}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{480}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{480}\PY{p}{,} \PY{l+m+mi}{420}\PY{p}{,} \PY{l+m+mi}{480}\PY{p}{,}
+                       \PY{l+m+mi}{560}\PY{p}{,} \PY{l+m+mi}{580}\PY{p}{,} \PY{l+m+mi}{650}\PY{p}{,} \PY{l+m+mi}{720}\PY{p}{,} \PY{l+m+mi}{650}\PY{p}{,} \PY{l+m+mi}{655}\PY{p}{,}
+                       \PY{l+m+mi}{680}\PY{p}{,} \PY{l+m+mi}{620}\PY{p}{,} \PY{l+m+mi}{650}\PY{p}{,} \PY{l+m+mi}{620}\PY{p}{,} \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{680}\PY{p}{,}
+                       \PY{l+m+mi}{650}\PY{p}{,} \PY{l+m+mi}{620}\PY{p}{,} \PY{l+m+mi}{620}\PY{p}{,} \PY{l+m+mi}{600}\PY{p}{,} \PY{l+m+mi}{580}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{]}\PY{p}{,}
+             \PY{p}{\PYZcb{}}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fall}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{\PYZob{}}
+                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{650}\PY{p}{,} \PY{l+m+mi}{630}\PY{p}{,} \PY{l+m+mi}{600}\PY{p}{,} \PY{l+m+mi}{620}\PY{p}{,} \PY{l+m+mi}{620}\PY{p}{,} \PY{l+m+mi}{750}\PY{p}{,}
+                       \PY{l+m+mi}{820}\PY{p}{,} \PY{l+m+mi}{930}\PY{p}{,} \PY{l+m+mi}{900}\PY{p}{,} \PY{l+m+mi}{820}\PY{p}{,} \PY{l+m+mi}{870}\PY{p}{,} \PY{l+m+mi}{850}\PY{p}{,}
+                       \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{750}\PY{p}{,} \PY{l+m+mi}{800}\PY{p}{,} \PY{l+m+mi}{850}\PY{p}{,} \PY{l+m+mi}{920}\PY{p}{,}
+                       \PY{l+m+mi}{880}\PY{p}{,} \PY{l+m+mi}{880}\PY{p}{,} \PY{l+m+mi}{780}\PY{p}{,} \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{600}\PY{p}{]}\PY{p}{,}
+                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{L}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{480}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{,}
+                       \PY{l+m+mi}{580}\PY{p}{,} \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{720}\PY{p}{,} \PY{l+m+mi}{720}\PY{p}{,} \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{700}\PY{p}{,}
+                       \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{620}\PY{p}{,} \PY{l+m+mi}{680}\PY{p}{,} \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{680}\PY{p}{,}
+                       \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{620}\PY{p}{,} \PY{l+m+mi}{680}\PY{p}{,} \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{650}\PY{p}{,} \PY{l+m+mi}{550}\PY{p}{]}\PY{p}{,}
+             \PY{p}{\PYZcb{}}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{SEASONS} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{1}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Winter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Winter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Spring}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                   \PY{l+m+mi}{4}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Spring}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Spring}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Summer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{l+m+mi}{7}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Summer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Summer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fall}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{l+m+mi}{10}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fall}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Winter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{12}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Winter}\PY{l+s+s1}{\PYZsq{}}
+                   \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} anahim lake electricity infrastructure is comprised of }
+         \PY{c+c1}{\PYZsh{} six (6) road mobile diesel generator sets}
+         \PY{n}{AH\PYZus{}capacity\PYZus{}kW} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{600}\PY{p}{,} \PY{l+m+mi}{600}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{850}\PY{p}{,} \PY{l+m+mi}{300}\PY{p}{,} \PY{l+m+mi}{300}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{demand\PYZus{}fig} \PY{o}{=} \PY{n}{figure}\PY{p}{(}\PY{n}{width}\PY{o}{=}\PY{l+m+mi}{800}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{500}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Seasonal Daily Demand Distribution [kW]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                            \PY{n}{x\PYZus{}axis\PYZus{}label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hour}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y\PYZus{}axis\PYZus{}label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Demand [kW]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{hourly} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{24}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{n}{peak\PYZus{}P} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{n}{min\PYZus{}P} \PY{o}{=} \PY{l+m+mf}{1E6}
+         \PY{k}{for} \PY{n}{s} \PY{o+ow}{in} \PY{n}{DEMAND}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{c} \PY{o}{=} \PY{n}{Viridis4}\PY{p}{[}\PY{n}{n}\PY{p}{]}
+             \PY{c+c1}{\PYZsh{} plot the seasonal daily distributions}
+             \PY{n}{demand\PYZus{}fig}\PY{o}{.}\PY{n}{line}\PY{p}{(}\PY{n}{hourly}\PY{p}{,} \PY{n}{DEMAND}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{L}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{n}{s}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ Low}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                            \PY{n}{color}\PY{o}{=}\PY{n}{c}\PY{p}{)}
+             \PY{n}{demand\PYZus{}fig}\PY{o}{.}\PY{n}{line}\PY{p}{(}\PY{n}{hourly}\PY{p}{,} \PY{n}{DEMAND}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{n}{s}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ Hi}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                             \PY{n}{line\PYZus{}dash}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dashed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{c}\PY{p}{)}
+             \PY{n}{n} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+             
+             \PY{c+c1}{\PYZsh{} track the minimum and peak power demand}
+             \PY{k}{if} \PY{n+nb}{max}\PY{p}{(}\PY{n}{DEMAND}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{n}{peak\PYZus{}P}\PY{p}{:}
+                 \PY{n}{peak\PYZus{}P} \PY{o}{=} \PY{n+nb}{max}\PY{p}{(}\PY{n}{DEMAND}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+             \PY{k}{if} \PY{n+nb}{min}\PY{p}{(}\PY{n}{DEMAND}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{n}{min\PYZus{}P}\PY{p}{:}
+                 \PY{n}{min\PYZus{}P} \PY{o}{=} \PY{n+nb}{min}\PY{p}{(}\PY{n}{DEMAND}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} create mean series for demand curves}
+             \PY{n}{DEMAND}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{/} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{DEMAND}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{L}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{DEMAND}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Minimum Load = }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ kW}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{min\PYZus{}P}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Peak Load = }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ kW}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{peak\PYZus{}P}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Minimum Load = 480 kW
+Peak Load = 1400 kW
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{output\PYZus{}notebook}\PY{p}{(}\PY{p}{)}
+         \PY{n}{layout} \PY{o}{=} \PY{p}{(}\PY{n}{column}\PY{p}{(}\PY{n}{demand\PYZus{}fig}\PY{p}{)}\PY{p}{)}
+         
+         
+         \PY{n}{show}\PY{p}{(}\PY{n}{layout}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    In 2003/2004, 84995 L of Diesel was consumed (citation) at an average
+price of \$CAD 0.4531/L. A standard diesel generation efficiency chart,
+based on capacity and load, was used to calibrate the diesel generator
+model and determine a baseline fuel consumption case.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c+c1}{\PYZsh{} calibrate the consumption to published fuel costs}
+         \PY{c+c1}{\PYZsh{} the fuel consumption gal hr is very rudimentary}
+         \PY{n}{diesel\PYZus{}consumption} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data/diesel\PYZus{}fuel\PYZus{}consumption\PYZus{}gal\PYZus{}hr.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{header}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} the fuel consumption is a more realistic curve}
+         
+         \PY{c+c1}{\PYZsh{} convert the consumption values from gal/h to L/h}
+         \PY{n}{diesel\PYZus{}consumption}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{25}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{50}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{75}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{100}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{diesel\PYZus{}consumption}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{25}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{50}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{75}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{100}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]} \PY{o}{*} \PY{l+m+mf}{3.7854}
+         
+         \PY{c+c1}{\PYZsh{} Assume fuel cost of \PYZdl{}0.4531/L}
+         \PY{n}{diesel\PYZus{}unit\PYZus{}cost} \PY{o}{=} \PY{l+m+mf}{0.4531}
+         
+         \PY{c+c1}{\PYZsh{} diesel\PYZus{}consumption = pd.read\PYZus{}csv(\PYZsq{}data/diesel\PYZus{}efficiency\PYZus{}curve.csv\PYZsq{}, header=0)}
+         \PY{c+c1}{\PYZsh{} diesel\PYZus{}consumption[\PYZsq{}[\PYZdl{}/kWh]\PYZsq{}]}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{diesel\PYZus{}consumption}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} convert fuel consumption to fuel cost}
+         \PY{n}{fuel\PYZus{}cost} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{)}
+         \PY{n}{fuel\PYZus{}cost}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{P\PYZus{}kW}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{diesel\PYZus{}consumption}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{P\PYZus{}kW}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} 
+         \PY{n}{fuel\PYZus{}cost}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{25}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{50}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{75}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{100}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{diesel\PYZus{}unit\PYZus{}cost} \PY{o}{*} \PY{n}{diesel\PYZus{}consumption}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{25}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{50}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{75}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{100}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} interpolate for 850 kW}
+         \PY{n}{fuel\PYZus{}cost}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{850}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{NaN}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{NaN}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{NaN}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{NaN}\PY{p}{]}
+         \PY{n}{fuel\PYZus{}cost}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{P\PYZus{}kW}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{fuel\PYZus{}cost}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{drop}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{col} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{25}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{50}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{75}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{100}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+             \PY{n}{test} \PY{o}{=} \PY{n}{fuel\PYZus{}cost}\PY{p}{[}\PY{n}{col}\PY{p}{]} 
+             \PY{n}{test}\PY{o}{.}\PY{n}{interpolate}\PY{p}{(}\PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{index}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+             \PY{n}{fuel\PYZus{}cost}\PY{p}{[}\PY{n}{col}\PY{p}{]} \PY{o}{=} \PY{n}{test}
+         
+         \PY{n}{fuel\PYZus{}cost}
+         
+         \PY{c+c1}{\PYZsh{} filter for the existing generator curves}
+         
+         \PY{n}{AHL\PYZus{}capacity\PYZus{}cost} \PY{o}{=} \PY{n}{fuel\PYZus{}cost}\PY{p}{[}\PY{n}{fuel\PYZus{}cost}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{P\PYZus{}kW}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isin}\PY{p}{(}\PY{n}{AH\PYZus{}capacity\PYZus{}kW}\PY{p}{)}\PY{p}{]}
+         
+         \PY{n}{AHL\PYZus{}capacity\PYZus{}cost}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+    P\_kW         25         50         75        100
+0    200   17.79138   29.14758   41.63940   54.50976
+1    230   20.06262   33.31152   47.31750   62.83764
+2    250   21.57678   35.96130   51.48144   68.13720
+3    300   25.74072   42.77502   60.94494   81.38610
+4    350   29.90466   49.58874   70.78698   95.01354
+5    400   33.69006   56.40246   80.62902  108.26244
+6    500   41.63940   70.02990   99.93456  135.13878
+7    600   49.96728   83.27880  119.24010  162.01512
+8    750   61.70202  103.71996  148.76622  202.14036
+9   1000   81.76464  137.78856  197.21934  269.14194
+10  1250  101.82726  171.47862  246.05100  336.14352
+11  1500  121.88988  205.54722  294.50412  403.14510
+12  1750  141.95250  239.23728  343.33578  470.14668
+13  2000  162.01512  273.30588  391.78890  537.14826
+14  2250  182.07774  306.99594  440.62056  604.14984
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:}       P\_kW         25         50         75         100
+         3    300.0  11.663120  19.381362  27.614152   36.876042
+         7    600.0  22.640175  37.733624  54.027689   73.409051
+         9    850.0  32.502372  54.713755  78.383029  106.769005
+         10  1000.0  37.047558  62.431997  89.360083  121.948213
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{output\PYZus{}notebook}\PY{p}{(}\PY{p}{)}
+         \PY{n}{diesel\PYZus{}fig} \PY{o}{=} \PY{n}{figure}\PY{p}{(}\PY{n}{width}\PY{o}{=}\PY{l+m+mi}{800}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{500}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Diesel Consumption Curve}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                            \PY{n}{x\PYZus{}axis\PYZus{}label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Load Factor [}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y\PYZus{}axis\PYZus{}label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fuel Cost [\PYZdl{}/hr]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                            \PY{n}{tools}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{box\PYZus{}zoom,box\PYZus{}select,crosshair,reset,pan,wheel\PYZus{}zoom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{300}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{600}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{850}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1000}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+             \PY{n}{this\PYZus{}curve} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{fuel\PYZus{}cost}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{fuel\PYZus{}cost}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{P\PYZus{}kW}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{n+nb}{int}\PY{p}{(}\PY{n}{c}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{25}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{50}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{75}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{100}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+             \PY{n}{this\PYZus{}curve} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{+} \PY{n}{this\PYZus{}curve}
+             \PY{n}{diesel\PYZus{}fig}\PY{o}{.}\PY{n}{line}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{0}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{0.25}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{0.5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{0.75}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{this\PYZus{}curve}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{n+nb}{str}\PY{p}{(}\PY{n}{c}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ kW}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{Viridis4}\PY{p}{[}\PY{n}{n}\PY{p}{]}\PY{p}{)}
+             \PY{n}{n} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+         
+         \PY{n}{diesel\PYZus{}fig}\PY{o}{.}\PY{n}{legend}\PY{o}{.}\PY{n}{location} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{top\PYZus{}left}\PY{l+s+s2}{\PYZdq{}}
+         \PY{n}{diesel\PYZus{}fig}\PY{o}{.}\PY{n}{legend}\PY{o}{.}\PY{n}{click\PYZus{}policy} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hide}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{show}\PY{p}{(}\PY{n}{diesel\PYZus{}fig}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{start\PYZus{}date} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2003\PYZhy{}01\PYZhy{}01}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{end\PYZus{}date} \PY{o}{=}  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2003\PYZhy{}12\PYZhy{}31}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{t\PYZus{}series} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{date\PYZus{}range}\PY{p}{(}\PY{n}{start\PYZus{}date}\PY{p}{,} \PY{n}{end\PYZus{}date}\PY{p}{,} \PY{n}{freq}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} 1x600@0.9 = just under \PYZdl{}66}
+         \PY{c+c1}{\PYZsh{} 2x300@0.9 = }
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c+c1}{\PYZsh{} create a time series of the days }
+         \PY{c+c1}{\PYZsh{} for the development of consumption profiles}
+         \PY{n}{ts\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{)}
+         \PY{n}{ts\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Datetime}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{t\PYZus{}series}
+         \PY{n}{ts\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Season}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{n}{SEASONS}\PY{p}{[}\PY{n}{d}\PY{p}{]} \PY{k}{for} \PY{n}{d} \PY{o+ow}{in} \PY{n}{t\PYZus{}series}\PY{o}{.}\PY{n}{month}\PY{p}{]}
+         \PY{n}{ts\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hour}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{t\PYZus{}series}\PY{o}{.}\PY{n}{hour}
+         
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}hourly\PYZus{}demand}\PY{p}{(}\PY{n}{h}\PY{p}{,} \PY{n}{s}\PY{p}{)}\PY{p}{:}
+             \PY{k}{return} \PY{n}{DEMAND}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{h}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} get the mean electricity demand by hour}
+         \PY{n}{ts\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean Demand [kW]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{ts\PYZus{}df}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{get\PYZus{}hourly\PYZus{}demand}\PY{p}{(}\PY{n}{h} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hour}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{s} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Season}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ts\PYZus{}df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+             Datetime  Season  Hour  Mean Demand [kW]
+0 2003-01-01 00:00:00  Winter     0             977.5
+1 2003-01-01 01:00:00  Winter     1             980.0
+2 2003-01-01 02:00:00  Winter     2             965.0
+3 2003-01-01 03:00:00  Winter     3            1000.0
+4 2003-01-01 04:00:00  Winter     4             990.0
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{interpolate} \PY{k}{import} \PY{n}{interp1d}
+         \PY{k+kn}{import} \PY{n+nn}{math}
+         \PY{k+kn}{import} \PY{n+nn}{itertools}
+         \PY{k+kn}{from} \PY{n+nn}{collections} \PY{k}{import} \PY{n}{Counter}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{k}{def} \PY{n+nf}{issubset}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{Y}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Boolean check if x is a subset of y, }
+         \PY{l+s+sd}{    and take into consideration duplicate values.}
+         \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{k}{return} \PY{n+nb}{len}\PY{p}{(}\PY{n}{Counter}\PY{p}{(}\PY{n}{X}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{Counter}\PY{p}{(}\PY{n}{Y}\PY{p}{)}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}
+              
+         \PY{k}{def} \PY{n+nf}{subsets}\PY{p}{(}\PY{n}{load}\PY{p}{)}\PY{p}{:}
+             \PY{n}{combos} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{max\PYZus{}possible\PYZus{}gens} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{AH\PYZus{}capacity\PYZus{}kW}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} get all the possible combinations of generators that would meet the current demand,}
+             \PY{c+c1}{\PYZsh{} and not be greater than 1.5 x current demand, }
+             \PY{c+c1}{\PYZsh{} AND if the combination returned is a subset of the actual set available generators in Anahim Lake}
+             \PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{max\PYZus{}possible\PYZus{}gens}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{combos} \PY{o}{+}\PY{o}{=} \PY{p}{[}\PY{n}{p} \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n}{itertools}\PY{o}{.}\PY{n}{combinations\PYZus{}with\PYZus{}replacement}\PY{p}{(}\PY{n}{AH\PYZus{}capacity\PYZus{}kW}\PY{p}{,}\PY{n}{n}\PY{p}{)} \PY{k}{if} \PY{p}{(}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{p}\PY{p}{)} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{load}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{p}\PY{p}{)} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{load}\PY{o}{*}\PY{l+m+mf}{1.5}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{issubset}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{p}\PY{p}{)}\PY{p}{,} \PY{n}{AH\PYZus{}capacity\PYZus{}kW}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+                 
+             \PY{n}{combos} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{set}\PY{p}{(}\PY{n}{combos}\PY{p}{)}\PY{p}{)}
+             \PY{k}{return} \PY{n}{combos}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{c+c1}{\PYZsh{} Track all costs to demonstrate the pareto\PYZhy{}optimal front}
+         \PY{n}{ALL\PYZus{}COSTS} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Apply interpolation to get fuel cost per hourly load}
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}operating\PYZus{}point}\PY{p}{(}\PY{n}{load\PYZus{}factor}\PY{p}{,} \PY{n}{gen}\PY{p}{)}\PY{p}{:}
+             \PY{n}{this\PYZus{}gen\PYZus{}curve} \PY{o}{=} \PY{n}{AHL\PYZus{}capacity\PYZus{}cost}\PY{p}{[}\PY{n}{AHL\PYZus{}capacity\PYZus{}cost}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{P\PYZus{}kW}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{n}{gen}\PY{p}{]}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{25}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{50}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{75}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{100}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{p}{)}
+             
+             \PY{n}{x} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mf}{0.75}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}    
+             \PY{n}{y} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{+} \PY{p}{[}\PY{n}{e}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{e} \PY{o+ow}{in} \PY{n}{this\PYZus{}gen\PYZus{}curve}\PY{o}{.}\PY{n}{values}\PY{p}{]}
+             
+             \PY{n}{load\PYZus{}interp} \PY{o}{=} \PY{n}{interp1d}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)}
+             \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{load\PYZus{}interp}\PY{p}{(}\PY{n}{load\PYZus{}factor}\PY{p}{)}\PY{p}{)}
+         
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}best\PYZus{}efficiency\PYZus{}distribution\PYZus{}cost}\PY{p}{(}\PY{n}{gens}\PY{p}{,} \PY{n}{combos}\PY{p}{,} \PY{n}{load}\PY{p}{)}\PY{p}{:}
+             \PY{n}{costs} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{gens}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{gen} \PY{o}{=} \PY{n+nb}{str}\PY{p}{(}\PY{n}{gens}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+                 \PY{n}{costs}\PY{p}{[}\PY{n}{gen}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{n}{get\PYZus{}operating\PYZus{}point}\PY{p}{(}\PY{n}{e}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{gens}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)} \PY{k}{for} \PY{n}{e} \PY{o+ow}{in} \PY{n}{combos}\PY{p}{]}
+                 \PY{n}{costs}\PY{p}{[}\PY{n}{gen} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{alloc}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{n}{e}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{k}{for} \PY{n}{e} \PY{o+ow}{in} \PY{n}{combos}\PY{p}{]}
+             \PY{n}{cost\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{costs}\PY{p}{)}
+             \PY{n}{cost\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total Cost [\PYZdl{}/hr]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{cost\PYZus{}df}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+             \PY{n}{min\PYZus{}alloc} \PY{o}{=} \PY{n}{cost\PYZus{}df}\PY{p}{[}\PY{n}{cost\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total Cost [\PYZdl{}/hr]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{n}{cost\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total Cost [\PYZdl{}/hr]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{]}
+             \PY{n}{min\PYZus{}cost} \PY{o}{=} \PY{n+nb}{round}\PY{p}{(}\PY{n}{min\PYZus{}alloc}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total Cost [\PYZdl{}/hr]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+             \PY{n}{min\PYZus{}allocation} \PY{o}{=} \PY{n}{min\PYZus{}alloc}\PY{p}{[}\PY{p}{[}\PY{n}{e} \PY{k}{for} \PY{n}{e} \PY{o+ow}{in} \PY{n}{min\PYZus{}alloc}\PY{o}{.}\PY{n}{columns} \PY{k}{if} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{alloc}\PY{l+s+s1}{\PYZsq{}} \PY{o+ow}{in} \PY{n}{e}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{c+c1}{\PYZsh{}min\PYZus{}combo = min\PYZus{}alloc}
+             \PY{k}{return} \PY{n}{min\PYZus{}cost}\PY{p}{,} \PY{n}{min\PYZus{}allocation}
+         
+         \PY{c+c1}{\PYZsh{} test\PYZus{}g = [300, 600, 850, 1000]}
+         \PY{c+c1}{\PYZsh{} print(test\PYZus{}c)}
+         \PY{c+c1}{\PYZsh{} for l in np.arange(10, 200, 10):}
+         \PY{c+c1}{\PYZsh{}     for g in test\PYZus{}g:}
+         \PY{c+c1}{\PYZsh{}         print(\PYZsq{}\PYZob{}\PYZcb{} kW Load, G = \PYZob{}\PYZcb{}, OP = \PYZob{}\PYZcb{}\PYZsq{}.format(l, g, round(get\PYZus{}operating\PYZus{}point(l / g, g), 2)))}
+         \PY{c+c1}{\PYZsh{}     print(\PYZsq{}\PYZsq{})}
+         
+         \PY{k}{def} \PY{n+nf}{optimize\PYZus{}load\PYZus{}distribution}\PY{p}{(}\PY{n}{genset\PYZus{}combos}\PY{p}{,} \PY{n}{load}\PY{p}{)}\PY{p}{:}
+             \PY{n}{min\PYZus{}cost} \PY{o}{=} \PY{l+m+mf}{1E6}
+             \PY{n}{allocations} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{n}{gens}\PY{p}{)} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{genset\PYZus{}combos}\PY{p}{)}\PY{p}{:}
+                 \PY{c+c1}{\PYZsh{} discretize the load in increments of 10kW}
+                 \PY{c+c1}{\PYZsh{} find the cheapest allocation of that load, }
+                 \PY{c+c1}{\PYZsh{} compare to the total load cost }
+                 \PY{c+c1}{\PYZsh{} and check if it exceeds the capacity of the }
+                 \PY{c+c1}{\PYZsh{} current (cheapest) generator.        }
+                 
+                 \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{gens}\PY{p}{)}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                     \PY{n}{g} \PY{o}{=} \PY{n}{gens}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                     \PY{n}{load\PYZus{}factor} \PY{o}{=} \PY{n}{load} \PY{o}{/} \PY{n}{g}
+                     \PY{n}{this\PYZus{}cost} \PY{o}{=} \PY{n}{get\PYZus{}operating\PYZus{}point}\PY{p}{(}\PY{n}{load\PYZus{}factor}\PY{p}{,} \PY{n}{g}\PY{p}{)} 
+                     \PY{n}{this\PYZus{}allocation} \PY{o}{=} \PY{n+nb}{round}\PY{p}{(}\PY{n}{load\PYZus{}factor}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+                 \PY{k}{else}\PY{p}{:}
+                     \PY{n}{load\PYZus{}distribution\PYZus{}combos} \PY{o}{=} \PY{p}{[}\PY{n}{p} \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n}{itertools}\PY{o}{.}\PY{n}{combinations\PYZus{}with\PYZus{}replacement}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n+nb}{round}\PY{p}{(}\PY{n+nb}{min}\PY{p}{(}\PY{n}{gens}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{5}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n+nb}{max}\PY{p}{(}\PY{n}{gens}\PY{p}{)} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{gens}\PY{p}{)}\PY{p}{)} \PY{k}{if} \PY{p}{(}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{p}\PY{p}{)} \PY{o}{==} \PY{n}{load}\PY{p}{)} \PY{o+ow}{and} \PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{p}\PY{p}{)}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{k+kc}{False}\PY{p}{)}\PY{p}{]}
+                     \PY{c+c1}{\PYZsh{} filter out combos that don\PYZsq{}t meet the individual generator capacities}
+                     \PY{n}{load\PYZus{}distribution\PYZus{}combos} \PY{o}{+}\PY{o}{=} \PY{p}{[}\PY{n}{e}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{k}{for} \PY{n}{e} \PY{o+ow}{in} \PY{n}{load\PYZus{}distribution\PYZus{}combos}\PY{p}{]}
+                     \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{gens}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                         \PY{n}{load\PYZus{}distribution\PYZus{}combos} \PY{o}{=} \PY{p}{[}\PY{n}{p} \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n}{load\PYZus{}distribution\PYZus{}combos} \PY{k}{if} \PY{n}{p}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{gens}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{]}
+         
+                     \PY{c+c1}{\PYZsh{} now convert to load factors}
+                     \PY{n}{load\PYZus{}factor\PYZus{}combos} \PY{o}{=} \PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{combo}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{gens}\PY{p}{)} \PY{k}{for} \PY{n}{combo} \PY{o+ow}{in} \PY{n}{load\PYZus{}distribution\PYZus{}combos}\PY{p}{]}
+                     \PY{n}{this\PYZus{}cost}\PY{p}{,} \PY{n}{this\PYZus{}allocation} \PY{o}{=} \PY{n}{get\PYZus{}best\PYZus{}efficiency\PYZus{}distribution\PYZus{}cost}\PY{p}{(}\PY{n}{gens}\PY{p}{,} \PY{n}{load\PYZus{}factor\PYZus{}combos}\PY{p}{,} \PY{n}{load}\PY{p}{)}
+                     \PY{n}{this\PYZus{}allocation} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{n}{this\PYZus{}allocation}\PY{p}{,} \PY{n}{decimals}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+                     \PY{n}{g} \PY{o}{=} \PY{n}{gens}
+                     
+                 \PY{c+c1}{\PYZsh{} add total cost to all\PYZus{}costs tracker}
+                 \PY{n}{ALL\PYZus{}COSTS}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{n}{load}\PY{p}{,} \PY{n}{this\PYZus{}cost}\PY{p}{,} \PY{n}{g}\PY{p}{,} \PY{n}{this\PYZus{}allocation}\PY{p}{)}\PY{p}{)}
+                 \PY{k}{if} \PY{n}{this\PYZus{}cost} \PY{o}{\PYZlt{}} \PY{n}{min\PYZus{}cost}\PY{p}{:}
+                     \PY{n}{min\PYZus{}cost} \PY{o}{=} \PY{n}{this\PYZus{}cost}
+                     
+                 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ kW load: \PYZdl{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{/kWh cost to load }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ units at }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ load factor(s)}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{load}\PY{p}{,} \PY{n+nb}{round}\PY{p}{(}\PY{n}{this\PYZus{}cost}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{g}\PY{p}{,} \PY{n}{this\PYZus{}allocation}\PY{p}{)}\PY{p}{)}
+         
+             \PY{k}{return} \PY{n+nb}{round}\PY{p}{(}\PY{n}{min\PYZus{}cost}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+         
+         \PY{k}{def} \PY{n+nf}{estimate\PYZus{}fuel\PYZus{}cost}\PY{p}{(}\PY{n}{load}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} get all combinations of generators that could deliver the minimum load}
+             \PY{c+c1}{\PYZsh{} and set a maximum load}
+             \PY{n}{all\PYZus{}gen\PYZus{}combos} \PY{o}{=} \PY{n}{subsets}\PY{p}{(}\PY{n}{load}\PY{p}{)}
+             \PY{k}{return} \PY{n}{optimize\PYZus{}load\PYZus{}distribution}\PY{p}{(}\PY{n}{all\PYZus{}gen\PYZus{}combos}\PY{p}{,} \PY{n}{load}\PY{p}{)}
+             
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{} get a table of the optimal allocations for min load to peak load in 10kW increments}
+         \PY{n}{optimal\PYZus{}allocation} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}2031 forecasted peak load (high Gen)  = 1864, rounded to 1870}
+         \PY{n}{peak\PYZus{}load\PYZus{}forecast\PYZus{}2031} \PY{o}{=} \PY{l+m+mi}{1510}\PY{c+c1}{\PYZsh{}1870}
+         \PY{n}{optimal\PYZus{}allocation}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Load\PYZus{}kW}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{400}\PY{p}{,} \PY{n}{peak\PYZus{}load\PYZus{}forecast\PYZus{}2031}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}
+         
+         \PY{n}{optimal\PYZus{}allocation}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cost [\PYZdl{}/h]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{optimal\PYZus{}allocation}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{estimate\PYZus{}fuel\PYZus{}cost}\PY{p}{(}\PY{n}{load}\PY{o}{=}\PY{n}{x}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Load\PYZus{}kW}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+400 kW load: \$48.6/kWh cost to load 600 units at 0.67 load factor(s)
+400 kW load: \$51.07/kWh cost to load (300, 300) units at [0.67 0.67] load factor(s)
+450 kW load: \$54.03/kWh cost to load 600 units at 0.75 load factor(s)
+450 kW load: \$56.8/kWh cost to load (300, 300) units at [0.73 0.77] load factor(s)
+500 kW load: \$60.49/kWh cost to load 600 units at 0.83 load factor(s)
+500 kW load: \$63.07/kWh cost to load (300, 300) units at [0.9  0.77] load factor(s)
+550 kW load: \$66.95/kWh cost to load 600 units at 0.92 load factor(s)
+550 kW load: \$69.41/kWh cost to load (300, 300) units at [0.83 1.  ] load factor(s)
+600 kW load: \$74.21/kWh cost to load 850 units at 0.71 load factor(s)
+600 kW load: \$73.41/kWh cost to load 600 units at 1.0 load factor(s)
+600 kW load: \$75.75/kWh cost to load (300, 300) units at [1. 1.] load factor(s)
+600 kW load: \$74.66/kWh cost to load (600, 300) units at [0.75 0.5 ] load factor(s)
+650 kW load: \$80.05/kWh cost to load 850 units at 0.76 load factor(s)
+650 kW load: \$80.31/kWh cost to load (600, 300) units at [0.75 0.67] load factor(s)
+700 kW load: \$86.73/kWh cost to load 850 units at 0.82 load factor(s)
+700 kW load: \$83.97/kWh cost to load 1000 units at 0.7 load factor(s)
+700 kW load: \$86.31/kWh cost to load (600, 300) units at [0.75 0.83] load factor(s)
+750 kW load: \$93.41/kWh cost to load 850 units at 0.88 load factor(s)
+750 kW load: \$89.36/kWh cost to load 1000 units at 0.75 load factor(s)
+750 kW load: \$92.65/kWh cost to load (600, 300) units at [0.75 1.  ] load factor(s)
+800 kW load: \$100.43/kWh cost to load (850, 300) units at [0.74 0.57] load factor(s)
+800 kW load: \$95.88/kWh cost to load 1000 units at 0.8 load factor(s)
+800 kW load: \$98.53/kWh cost to load (600, 600) units at [0.67 0.67] load factor(s)
+800 kW load: \$100.2/kWh cost to load (600, 300, 300) units at [0.75 0.67 0.5 ] load factor(s)
+800 kW load: \$99.2/kWh cost to load (600, 300) units at [0.83 1.  ] load factor(s)
+800 kW load: \$100.09/kWh cost to load 850 units at 0.94 load factor(s)
+850 kW load: \$106.09/kWh cost to load (850, 300) units at [0.74 0.73] load factor(s)
+850 kW load: \$102.4/kWh cost to load 1000 units at 0.85 load factor(s)
+850 kW load: \$104.04/kWh cost to load (600, 600) units at [0.67 0.75] load factor(s)
+850 kW load: \$105.85/kWh cost to load (600, 300, 300) units at [0.75 0.73 0.6 ] load factor(s)
+850 kW load: \$105.74/kWh cost to load (600, 300) units at [0.92 1.  ] load factor(s)
+850 kW load: \$106.77/kWh cost to load 850 units at 1.0 load factor(s)
+900 kW load: \$112.27/kWh cost to load (850, 300) units at [0.75 0.87] load factor(s)
+900 kW load: \$109.99/kWh cost to load (1000, 300) units at [0.75 0.5 ] load factor(s)
+900 kW load: \$108.91/kWh cost to load 1000 units at 0.9 load factor(s)
+900 kW load: \$109.56/kWh cost to load (600, 600) units at [0.75 0.75] load factor(s)
+900 kW load: \$111.57/kWh cost to load (600, 300, 300) units at [0.75 0.77 0.73] load factor(s)
+900 kW load: \$112.29/kWh cost to load (600, 300) units at [1. 1.] load factor(s)
+950 kW load: \$118.69/kWh cost to load (850, 300) units at [0.76 1.  ] load factor(s)
+950 kW load: \$115.65/kWh cost to load (1000, 300) units at [0.75 0.67] load factor(s)
+950 kW load: \$115.43/kWh cost to load 1000 units at 0.95 load factor(s)
+950 kW load: \$116.1/kWh cost to load (600, 600) units at [0.77 0.82] load factor(s)
+950 kW load: \$117.85/kWh cost to load (600, 300, 300) units at [0.75 0.87 0.8 ] load factor(s)
+1000 kW load: \$125.43/kWh cost to load (850, 300) units at [0.82 1.  ] load factor(s)
+1000 kW load: \$124.06/kWh cost to load (600, 850) units at [0.75 0.65] load factor(s)
+1000 kW load: \$121.64/kWh cost to load (1000, 300) units at [0.75 0.83] load factor(s)
+1000 kW load: \$121.95/kWh cost to load 1000 units at 1.0 load factor(s)
+1000 kW load: \$125.97/kWh cost to load (850, 300, 300) units at [0.74 0.73 0.5 ] load factor(s)
+1000 kW load: \$122.64/kWh cost to load (600, 600) units at [0.75 0.92] load factor(s)
+1000 kW load: \$124.19/kWh cost to load (600, 300, 300) units at [0.75 1.   0.83] load factor(s)
+1000 kW load: \$123.92/kWh cost to load (600, 600, 300) units at [0.75 0.67 0.5 ] load factor(s)
+1050 kW load: \$132.17/kWh cost to load (850, 300) units at [0.88 1.  ] load factor(s)
+1050 kW load: \$129.69/kWh cost to load (600, 850) units at [0.75 0.71] load factor(s)
+1050 kW load: \$127.99/kWh cost to load (1000, 300) units at [0.75 1.  ] load factor(s)
+1050 kW load: \$131.62/kWh cost to load (850, 300, 300) units at [0.74 0.73 0.67] load factor(s)
+1050 kW load: \$129.19/kWh cost to load (600, 600) units at [0.77 0.98] load factor(s)
+1050 kW load: \$130.53/kWh cost to load (600, 300, 300) units at [0.75 1.   1.  ] load factor(s)
+1050 kW load: \$129.44/kWh cost to load (600, 600, 300) units at [0.75 0.75 0.5 ] load factor(s)
+1100 kW load: \$133.86/kWh cost to load (600, 1000) units at [0.58 0.75] load factor(s)
+1100 kW load: \$135.53/kWh cost to load (1000, 300, 300) units at [0.75 0.67 0.5 ] load factor(s)
+1100 kW load: \$138.91/kWh cost to load (850, 300) units at [0.94 1.  ] load factor(s)
+1100 kW load: \$135.56/kWh cost to load (600, 850) units at [0.77 0.75] load factor(s)
+1100 kW load: \$134.55/kWh cost to load (1000, 300) units at [0.8 1. ] load factor(s)
+1100 kW load: \$137.47/kWh cost to load (850, 300, 300) units at [0.75 0.77 0.77] load factor(s)
+1100 kW load: \$135.73/kWh cost to load (600, 600) units at [0.85 0.98] load factor(s)
+1100 kW load: \$137.07/kWh cost to load (600, 300, 300) units at [0.83 1.   1.  ] load factor(s)
+1100 kW load: \$135.09/kWh cost to load (600, 600, 300) units at [0.75 0.75 0.67] load factor(s)
+1150 kW load: \$139.37/kWh cost to load (600, 1000) units at [0.67 0.75] load factor(s)
+1150 kW load: \$141.18/kWh cost to load (1000, 300, 300) units at [0.75 0.73 0.6 ] load factor(s)
+1150 kW load: \$145.65/kWh cost to load (850, 300) units at [1. 1.] load factor(s)
+1150 kW load: \$142.1/kWh cost to load (600, 850) units at [0.85 0.75] load factor(s)
+1150 kW load: \$141.12/kWh cost to load (1000, 300) units at [0.85 1.  ] load factor(s)
+1150 kW load: \$143.81/kWh cost to load (850, 300, 300) units at [0.75 0.93 0.77] load factor(s)
+1150 kW load: \$142.27/kWh cost to load (600, 600) units at [0.92 1.  ] load factor(s)
+1150 kW load: \$143.62/kWh cost to load (600, 300, 300) units at [0.92 1.   1.  ] load factor(s)
+1150 kW load: \$141.09/kWh cost to load (600, 600, 300) units at [0.75 0.75 0.83] load factor(s)
+1200 kW load: \$144.89/kWh cost to load (600, 1000) units at [0.75 0.75] load factor(s)
+1200 kW load: \$146.91/kWh cost to load (1000, 300, 300) units at [0.75 0.77 0.73] load factor(s)
+1200 kW load: \$148.64/kWh cost to load (600, 850) units at [0.93 0.75] load factor(s)
+1200 kW load: \$147.69/kWh cost to load (1000, 300) units at [0.9 1. ] load factor(s)
+1200 kW load: \$150.34/kWh cost to load (600, 850, 300) units at [0.82 0.58 0.73] load factor(s)
+1200 kW load: \$150.15/kWh cost to load (850, 300, 300) units at [0.75 1.   0.87] load factor(s)
+1200 kW load: \$148.82/kWh cost to load (600, 600) units at [1. 1.] load factor(s)
+1200 kW load: \$150.16/kWh cost to load (600, 300, 300) units at [1. 1. 1.] load factor(s)
+1200 kW load: \$149.32/kWh cost to load (600, 600, 300, 300) units at [0.75 0.75 0.5  0.5 ] load factor(s)
+1200 kW load: \$147.43/kWh cost to load (600, 600, 300) units at [0.75 0.75 1.  ] load factor(s)
+1250 kW load: \$151.43/kWh cost to load (600, 1000) units at [0.83 0.75] load factor(s)
+1250 kW load: \$153.18/kWh cost to load (1000, 300, 300) units at [0.75 0.83 0.83] load factor(s)
+1250 kW load: \$155.23/kWh cost to load (600, 850) units at [1.   0.76] load factor(s)
+1250 kW load: \$154.26/kWh cost to load (1000, 300) units at [0.95 1.  ] load factor(s)
+1250 kW load: \$156.41/kWh cost to load (600, 850, 300) units at [0.85 0.6  0.77] load factor(s)
+1250 kW load: \$156.57/kWh cost to load (850, 300, 300) units at [0.76 1.   1.  ] load factor(s)
+1250 kW load: \$154.97/kWh cost to load (600, 600, 300, 300) units at [0.75 0.75 0.67 0.5 ] load factor(s)
+1250 kW load: \$153.77/kWh cost to load (1000, 850) units at [0.75 0.59] load factor(s)
+1250 kW load: \$153.98/kWh cost to load (600, 600, 300) units at [0.83 0.75 1.  ] load factor(s)
+1300 kW load: \$157.98/kWh cost to load (600, 1000) units at [0.92 0.75] load factor(s)
+1300 kW load: \$159.52/kWh cost to load (1000, 300, 300) units at [0.75 1.   0.83] load factor(s)
+1300 kW load: \$161.96/kWh cost to load (600, 850) units at [1.   0.82] load factor(s)
+1300 kW load: \$160.82/kWh cost to load (1000, 300) units at [1. 1.] load factor(s)
+1300 kW load: \$162.51/kWh cost to load (600, 850, 300) units at [0.9  0.64 0.73] load factor(s)
+1300 kW load: \$163.31/kWh cost to load (850, 300, 300) units at [0.82 1.   1.  ] load factor(s)
+1300 kW load: \$161.64/kWh cost to load (600, 1000, 300) units at [0.9  0.54 0.73] load factor(s)
+1300 kW load: \$160.63/kWh cost to load (600, 600, 300, 300) units at [0.75 0.75 0.73 0.6 ] load factor(s)
+1300 kW load: \$159.39/kWh cost to load (1000, 850) units at [0.75 0.65] load factor(s)
+1300 kW load: \$160.52/kWh cost to load (600, 600, 300) units at [0.92 0.75 1.  ] load factor(s)
+1350 kW load: \$164.52/kWh cost to load (600, 1000) units at [1.   0.75] load factor(s)
+1350 kW load: \$165.86/kWh cost to load (1000, 300, 300) units at [0.75 1.   1.  ] load factor(s)
+1350 kW load: \$168.7/kWh cost to load (600, 850) units at [1.   0.88] load factor(s)
+1350 kW load: \$168.58/kWh cost to load (600, 850, 300) units at [0.93 0.66 0.77] load factor(s)
+1350 kW load: \$170.05/kWh cost to load (850, 300, 300) units at [0.88 1.   1.  ] load factor(s)
+1350 kW load: \$167.63/kWh cost to load (600, 1000, 300) units at [0.93 0.56 0.77] load factor(s)
+1350 kW load: \$166.35/kWh cost to load (600, 600, 300, 300) units at [0.75 0.75 0.77 0.73] load factor(s)
+1350 kW load: \$165.02/kWh cost to load (1000, 850) units at [0.75 0.71] load factor(s)
+1350 kW load: \$167.06/kWh cost to load (600, 600, 300) units at [1.   0.75 1.  ] load factor(s)
+1400 kW load: \$175.67/kWh cost to load (600, 850, 300, 300) units at [0.78 0.55 0.77 0.77] load factor(s)
+1400 kW load: \$171.09/kWh cost to load (600, 1000) units at [1.  0.8] load factor(s)
+1400 kW load: \$172.43/kWh cost to load (1000, 300, 300) units at [0.8 1.  1. ] load factor(s)
+1400 kW load: \$173.21/kWh cost to load (600, 600, 850) units at [0.75 0.75 0.59] load factor(s)
+1400 kW load: \$175.44/kWh cost to load (600, 850) units at [1.   0.94] load factor(s)
+1400 kW load: \$174.69/kWh cost to load (600, 850, 300) units at [0.98 0.69 0.73] load factor(s)
+1400 kW load: \$176.78/kWh cost to load (850, 300, 300) units at [0.94 1.   1.  ] load factor(s)
+1400 kW load: \$173.62/kWh cost to load (600, 1000, 300) units at [0.98 0.59 0.73] load factor(s)
+1400 kW load: \$172.62/kWh cost to load (600, 600, 300, 300) units at [0.75 0.75 0.9  0.77] load factor(s)
+1400 kW load: \$170.89/kWh cost to load (1000, 850) units at [0.76 0.75] load factor(s)
+1400 kW load: \$173.61/kWh cost to load (600, 600, 300) units at [0.98 0.85 1.  ] load factor(s)
+1450 kW load: \$181.77/kWh cost to load (600, 850, 300, 300) units at [0.83 0.59 0.77 0.73] load factor(s)
+1450 kW load: \$177.65/kWh cost to load (600, 1000) units at [1.   0.85] load factor(s)
+1450 kW load: \$179.0/kWh cost to load (1000, 300, 300) units at [0.85 1.   1.  ] load factor(s)
+1450 kW load: \$178.84/kWh cost to load (600, 600, 850) units at [0.75 0.75 0.65] load factor(s)
+1450 kW load: \$182.18/kWh cost to load (600, 850) units at [1. 1.] load factor(s)
+1450 kW load: \$180.86/kWh cost to load (600, 850, 300) units at [1.   0.71 0.83] load factor(s)
+1450 kW load: \$183.52/kWh cost to load (850, 300, 300) units at [1. 1. 1.] load factor(s)
+1450 kW load: \$179.75/kWh cost to load (600, 1000, 300) units at [1.   0.6  0.83] load factor(s)
+1450 kW load: \$178.97/kWh cost to load (600, 600, 300, 300) units at [0.75 0.75 1.   0.83] load factor(s)
+1450 kW load: \$177.46/kWh cost to load (1000, 850) units at [0.81 0.75] load factor(s)
+1450 kW load: \$179.11/kWh cost to load (1000, 850, 300) units at [0.75 0.75 0.2 ] load factor(s)
+1450 kW load: \$180.15/kWh cost to load (600, 600, 300) units at [1.   0.92 1.  ] load factor(s)
+1500 kW load: \$187.84/kWh cost to load (600, 850, 300, 300) units at [0.87 0.61 0.77 0.77] load factor(s)
+1500 kW load: \$184.22/kWh cost to load (600, 1000) units at [1.  0.9] load factor(s)
+1500 kW load: \$185.57/kWh cost to load (1000, 300, 300) units at [0.9 1.  1. ] load factor(s)
+1500 kW load: \$184.47/kWh cost to load (600, 600, 850) units at [0.75 0.75 0.71] load factor(s)
+1500 kW load: \$187.04/kWh cost to load (600, 1000, 300, 300) units at [0.88 0.53 0.73 0.73] load factor(s)
+1500 kW load: \$187.2/kWh cost to load (600, 850, 300) units at [1.   0.71 1.  ] load factor(s)
+1500 kW load: \$186.09/kWh cost to load (600, 1000, 300) units at [1.  0.6 1. ] load factor(s)
+1500 kW load: \$185.31/kWh cost to load (600, 600, 300, 300) units at [0.75 0.75 1.   1.  ] load factor(s)
+1500 kW load: \$184.03/kWh cost to load (1000, 850) units at [0.86 0.75] load factor(s)
+1500 kW load: \$183.12/kWh cost to load (600, 600, 1000) units at [0.5  0.75 0.75] load factor(s)
+1500 kW load: \$184.9/kWh cost to load (1000, 850, 300) units at [0.75 0.71 0.5 ] load factor(s)
+1500 kW load: \$186.69/kWh cost to load (600, 600, 300) units at [1. 1. 1.] load factor(s)
+
+    \end{Verbatim}
+
+    \hypertarget{plot-the-optimal-load-allocation-for-diesel-as-well-as-all-the-load-distribution-cases}{%
+\paragraph{Plot the optimal load allocation for diesel, as well as all
+the load distribution
+cases}\label{plot-the-optimal-load-allocation-for-diesel-as-well-as-all-the-load-distribution-cases}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{optimal\PYZus{}allocation}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}27}]:}     Load\_kW  Cost [\$/h]
+         0       400       48.60
+         1       450       54.03
+         2       500       60.49
+         3       550       66.95
+         4       600       73.41
+         5       650       80.05
+         6       700       83.97
+         7       750       89.36
+         8       800       95.88
+         9       850      102.40
+         10      900      108.91
+         11      950      115.43
+         12     1000      121.64
+         13     1050      127.99
+         14     1100      133.86
+         15     1150      139.37
+         16     1200      144.89
+         17     1250      151.43
+         18     1300      157.98
+         19     1350      164.52
+         20     1400      170.89
+         21     1450      177.46
+         22     1500      183.12
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{output\PYZus{}notebook}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{diesel\PYZus{}alloc\PYZus{}loads} \PY{o}{=} \PY{p}{[}\PY{n}{e}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{e} \PY{o+ow}{in} \PY{n}{ALL\PYZus{}COSTS}\PY{p}{]}
+         \PY{n}{diesel\PYZus{}alloc\PYZus{}costs} \PY{o}{=} \PY{p}{[}\PY{n}{e}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{k}{for} \PY{n}{e} \PY{o+ow}{in} \PY{n}{ALL\PYZus{}COSTS}\PY{p}{]}
+         \PY{n}{diesel\PYZus{}alloc\PYZus{}combos} \PY{o}{=} \PY{p}{[}\PY{n}{e}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{k}{for} \PY{n}{e} \PY{o+ow}{in} \PY{n}{ALL\PYZus{}COSTS}\PY{p}{]}
+         \PY{n}{diesel\PYZus{}alloc\PYZus{}allocations} \PY{o}{=} \PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{around}\PY{p}{(}\PY{n}{e}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,} \PY{n}{decimals}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)} \PY{k}{for} \PY{n}{e} \PY{o+ow}{in} \PY{n}{ALL\PYZus{}COSTS}\PY{p}{]}
+         
+         \PY{n}{diesel\PYZus{}source} \PY{o}{=} \PY{n}{ColumnDataSource}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}
+             \PY{n}{loads} \PY{o}{=} \PY{n}{diesel\PYZus{}alloc\PYZus{}loads}\PY{p}{,}
+             \PY{n}{costs} \PY{o}{=} \PY{n}{diesel\PYZus{}alloc\PYZus{}costs}\PY{p}{,}
+             \PY{n}{gen\PYZus{}combos} \PY{o}{=} \PY{n}{diesel\PYZus{}alloc\PYZus{}combos}\PY{p}{,}
+             \PY{n}{gen\PYZus{}allocs} \PY{o}{=} \PY{n}{diesel\PYZus{}alloc\PYZus{}allocations}
+         \PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{TOOLTIPS} \PY{o}{=} \PY{p}{[}
+             \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Load [kW]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{@loads}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+             \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Cost [\PYZdl{}/hr]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{@costs}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+             \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Gens}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{@gen\PYZus{}combos}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+             \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Load Factors}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{@gen\PYZus{}allocs}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+         \PY{p}{]}
+         
+         \PY{n}{diesel\PYZus{}allocation\PYZus{}fig} \PY{o}{=} \PY{n}{figure}\PY{p}{(}\PY{n}{width}\PY{o}{=}\PY{l+m+mi}{800}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{500}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Load Allocation Curve \PYZhy{} Diesel}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                                        \PY{n}{x\PYZus{}axis\PYZus{}label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Load [kW]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y\PYZus{}axis\PYZus{}label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Energy Supply Fuel Cost [\PYZdl{}/hr]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                       \PY{n}{tooltips}\PY{o}{=}\PY{n}{TOOLTIPS}\PY{p}{)}
+         
+         \PY{n}{diesel\PYZus{}allocation\PYZus{}fig}\PY{o}{.}\PY{n}{circle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{loads}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{costs}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                                      \PY{n}{legend}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{All Allocation Cases}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{Viridis4}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}
+                                     \PY{n}{source}\PY{o}{=}\PY{n}{diesel\PYZus{}source}\PY{p}{)}
+         
+         \PY{n}{diesel\PYZus{}allocation\PYZus{}fig}\PY{o}{.}\PY{n}{line}\PY{p}{(}\PY{n}{optimal\PYZus{}allocation}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Load\PYZus{}kW}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} 
+                                    \PY{n}{optimal\PYZus{}allocation}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cost [\PYZdl{}/h]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pareto\PYZhy{}Optimal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                                    \PY{n}{color}\PY{o}{=}\PY{n}{Viridis4}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{line\PYZus{}width}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}
+         
+         \PY{n}{diesel\PYZus{}allocation\PYZus{}fig}\PY{o}{.}\PY{n}{legend}\PY{o}{.}\PY{n}{location} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{top\PYZus{}left}\PY{l+s+s2}{\PYZdq{}}
+         \PY{n}{diesel\PYZus{}allocation\PYZus{}fig}\PY{o}{.}\PY{n}{legend}\PY{o}{.}\PY{n}{click\PYZus{}policy} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hide}\PY{l+s+s1}{\PYZsq{}}
+         
+         \PY{n}{show}\PY{p}{(}\PY{n}{diesel\PYZus{}allocation\PYZus{}fig}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}save(diesel\PYZus{}allocation\PYZus{}fig, filename=\PYZsq{}diesel.html\PYZsq{}, output\PYZus{}file=\PYZsq{}Load Allocation Optimization\PYZsq{})}
+\end{Verbatim}
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    \[\sum_{i = 1}^{n}T_iX_i\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Take the optimal diesel cost and apply it to the seasonal demand curves}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{ts\PYZus{}df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{x} \PY{o}{=} \PY{n}{optimal\PYZus{}allocation}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Load\PYZus{}kW}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{y} \PY{o}{=} \PY{n}{optimal\PYZus{}allocation}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cost [\PYZdl{}/h]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{n}{load\PYZus{}interp} \PY{o}{=} \PY{n}{interp1d}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)}
+         
+         \PY{n}{ts\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fuel Expense [\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{ts\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean Demand [kW]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{load\PYZus{}interp}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Estimated Fuel Expense for 2003 = \PYZdl{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{ts\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fuel Expense [\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+             Datetime  Season  Hour  Mean Demand [kW]
+0 2003-01-01 00:00:00  Winter     0             977.5
+1 2003-01-01 01:00:00  Winter     1             980.0
+2 2003-01-01 02:00:00  Winter     2             965.0
+3 2003-01-01 03:00:00  Winter     3            1000.0
+4 2003-01-01 04:00:00  Winter     4             990.0
+Estimated Fuel Expense for 2003 = \$899278.78
+
+    \end{Verbatim}
+
+    The estimated fuel expense is roughly \$900K for 2003, which is very
+similar to the cost estimated by assuming 3.5 kWh/L fuel efficiency and
+6.9 GWh for Anahim Lake.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

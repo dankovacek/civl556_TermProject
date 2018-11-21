@@ -1,0 +1,85 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+      <meta charset="utf-8">
+      <title>Bokeh Plot</title>
+      
+      
+        
+          
+        <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-1.0.0.min.css" type="text/css" />
+        
+        
+          
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-1.0.0.min.js"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+        
+      
+      
+    
+  </head>
+  
+  
+  <body>
+    
+      
+        
+          
+          
+            
+              <div class="bk-root" id="4f1fbec8-9cfe-41fa-8616-31b957bfaaa8"></div>
+            
+          
+        
+      
+      
+        <script type="application/json" id="2176">
+          {"c891b06d-43e5-42eb-bc7a-c0c1e424c1ff":{"roots":{"references":[{"attributes":{"below":[{"id":"1921","type":"LinearAxis"}],"left":[{"id":"1926","type":"LinearAxis"}],"plot_height":500,"plot_width":800,"renderers":[{"id":"1921","type":"LinearAxis"},{"id":"1925","type":"Grid"},{"id":"1926","type":"LinearAxis"},{"id":"1930","type":"Grid"},{"id":"1940","type":"BoxAnnotation"},{"id":"1959","type":"Legend"},{"id":"1951","type":"GlyphRenderer"},{"id":"1964","type":"GlyphRenderer"}],"title":{"id":"1910","type":"Title"},"toolbar":{"id":"1938","type":"Toolbar"},"x_range":{"id":"1913","type":"DataRange1d"},"x_scale":{"id":"1917","type":"LinearScale"},"y_range":{"id":"1915","type":"DataRange1d"},"y_scale":{"id":"1919","type":"LinearScale"}},"id":"1911","subtype":"Figure","type":"Plot"},{"attributes":{"line_color":"#440154","line_width":4,"x":{"field":"x"},"y":{"field":"y"}},"id":"1962","type":"Line"},{"attributes":{"fill_color":{"value":"#35B778"},"line_color":{"value":"#35B778"},"x":{"field":"loads"},"y":{"field":"costs"}},"id":"1949","type":"Circle"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","line_width":4,"x":{"field":"x"},"y":{"field":"y"}},"id":"1963","type":"Line"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"x":{"field":"loads"},"y":{"field":"costs"}},"id":"1950","type":"Circle"},{"attributes":{"data_source":{"id":"1961","type":"ColumnDataSource"},"glyph":{"id":"1962","type":"Line"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1963","type":"Line"},"selection_glyph":null,"view":{"id":"1965","type":"CDSView"}},"id":"1964","type":"GlyphRenderer"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1931","type":"PanTool"},{"id":"1932","type":"WheelZoomTool"},{"id":"1933","type":"BoxZoomTool"},{"id":"1934","type":"SaveTool"},{"id":"1935","type":"ResetTool"},{"id":"1936","type":"HelpTool"},{"id":"1937","type":"HoverTool"}]},"id":"1938","type":"Toolbar"},{"attributes":{},"id":"1931","type":"PanTool"},{"attributes":{"source":{"id":"1961","type":"ColumnDataSource"}},"id":"1965","type":"CDSView"},{"attributes":{},"id":"1932","type":"WheelZoomTool"},{"attributes":{},"id":"1972","type":"Selection"},{"attributes":{"callback":null,"data":{"costs":[48.596334299999995,51.07,54.02768931,56.8,60.488143164,63.07,66.94859701799999,69.41,74.20609801588236,73.409050872,75.75,74.66,80.05279193841176,80.31,86.73184522005882,83.9744656704,86.31,93.41089850170587,89.360082954,92.65,100.43,95.87770896600001,98.53,100.2,99.2,100.08995178335293,106.09,102.395334978,104.04,105.85,105.74,106.76900506499999,112.27,109.99,108.91296099,109.56,111.57,112.29,118.69,115.65,115.43058700199998,116.1,117.85,125.43,124.06,121.64,121.94821301399999,125.97,122.64,124.19,123.92,132.17,129.69,127.99,131.62,129.19,130.53,129.44,133.86,135.53,138.91,135.56,134.55,137.47,135.73,137.07,135.09,139.37,141.18,145.65,142.1,141.12,143.81,142.27,143.62,141.09,144.89,146.91,148.64,147.69,150.34,150.15,148.82,150.16,149.32,147.43,151.43,153.18,155.23,154.26,156.41,156.57,154.97,153.77,153.98,157.98,159.52,161.96,160.82,162.51,163.31,161.64,160.63,159.39,160.52,164.52,165.86,168.7,168.58,170.05,167.63,166.35,165.02,167.06,175.67,171.09,172.43,173.21,175.44,174.69,176.78,173.62,172.62,170.89,173.61,181.77,177.65,179.0,178.84,182.18,180.86,183.52,179.75,178.97,177.46,179.11,180.15,187.84,184.22,185.57,184.47,187.04,187.2,186.09,185.31,184.03,183.12,184.9,186.69],"gen_allocs":[0.67,[0.67,0.67],0.75,[0.73,0.77],0.83,[0.9,0.77],0.92,[0.83,1.0],0.71,1.0,[1.0,1.0],[0.75,0.5],0.76,[0.75,0.67],0.82,0.7,[0.75,0.83],0.88,0.75,[0.75,1.0],[0.74,0.57],0.8,[0.67,0.67],[0.75,0.67,0.5],[0.83,1.0],0.94,[0.74,0.73],0.85,[0.67,0.75],[0.75,0.73,0.6],[0.92,1.0],1.0,[0.75,0.87],[0.75,0.5],0.9,[0.75,0.75],[0.75,0.77,0.73],[1.0,1.0],[0.76,1.0],[0.75,0.67],0.95,[0.77,0.82],[0.75,0.87,0.8],[0.82,1.0],[0.75,0.65],[0.75,0.83],1.0,[0.74,0.73,0.5],[0.75,0.92],[0.75,1.0,0.83],[0.75,0.67,0.5],[0.88,1.0],[0.75,0.71],[0.75,1.0],[0.74,0.73,0.67],[0.77,0.98],[0.75,1.0,1.0],[0.75,0.75,0.5],[0.58,0.75],[0.75,0.67,0.5],[0.94,1.0],[0.77,0.75],[0.8,1.0],[0.75,0.77,0.77],[0.85,0.98],[0.83,1.0,1.0],[0.75,0.75,0.67],[0.67,0.75],[0.75,0.73,0.6],[1.0,1.0],[0.85,0.75],[0.85,1.0],[0.75,0.93,0.77],[0.92,1.0],[0.92,1.0,1.0],[0.75,0.75,0.83],[0.75,0.75],[0.75,0.77,0.73],[0.93,0.75],[0.9,1.0],[0.82,0.58,0.73],[0.75,1.0,0.87],[1.0,1.0],[1.0,1.0,1.0],[0.75,0.75,0.5,0.5],[0.75,0.75,1.0],[0.83,0.75],[0.75,0.83,0.83],[1.0,0.76],[0.95,1.0],[0.85,0.6,0.77],[0.76,1.0,1.0],[0.75,0.75,0.67,0.5],[0.75,0.59],[0.83,0.75,1.0],[0.92,0.75],[0.75,1.0,0.83],[1.0,0.82],[1.0,1.0],[0.9,0.64,0.73],[0.82,1.0,1.0],[0.9,0.54,0.73],[0.75,0.75,0.73,0.6],[0.75,0.65],[0.92,0.75,1.0],[1.0,0.75],[0.75,1.0,1.0],[1.0,0.88],[0.93,0.66,0.77],[0.88,1.0,1.0],[0.93,0.56,0.77],[0.75,0.75,0.77,0.73],[0.75,0.71],[1.0,0.75,1.0],[0.78,0.55,0.77,0.77],[1.0,0.8],[0.8,1.0,1.0],[0.75,0.75,0.59],[1.0,0.94],[0.98,0.69,0.73],[0.94,1.0,1.0],[0.98,0.59,0.73],[0.75,0.75,0.9,0.77],[0.76,0.75],[0.98,0.85,1.0],[0.83,0.59,0.77,0.73],[1.0,0.85],[0.85,1.0,1.0],[0.75,0.75,0.65],[1.0,1.0],[1.0,0.71,0.83],[1.0,1.0,1.0],[1.0,0.6,0.83],[0.75,0.75,1.0,0.83],[0.81,0.75],[0.75,0.75,0.2],[1.0,0.92,1.0],[0.87,0.61,0.77,0.77],[1.0,0.9],[0.9,1.0,1.0],[0.75,0.75,0.71],[0.88,0.53,0.73,0.73],[1.0,0.71,1.0],[1.0,0.6,1.0],[0.75,0.75,1.0,1.0],[0.86,0.75],[0.5,0.75,0.75],[0.75,0.71,0.5],[1.0,1.0,1.0]],"gen_combos":[600,[300,300],600,[300,300],600,[300,300],600,[300,300],850,600,[300,300],[600,300],850,[600,300],850,1000,[600,300],850,1000,[600,300],[850,300],1000,[600,600],[600,300,300],[600,300],850,[850,300],1000,[600,600],[600,300,300],[600,300],850,[850,300],[1000,300],1000,[600,600],[600,300,300],[600,300],[850,300],[1000,300],1000,[600,600],[600,300,300],[850,300],[600,850],[1000,300],1000,[850,300,300],[600,600],[600,300,300],[600,600,300],[850,300],[600,850],[1000,300],[850,300,300],[600,600],[600,300,300],[600,600,300],[600,1000],[1000,300,300],[850,300],[600,850],[1000,300],[850,300,300],[600,600],[600,300,300],[600,600,300],[600,1000],[1000,300,300],[850,300],[600,850],[1000,300],[850,300,300],[600,600],[600,300,300],[600,600,300],[600,1000],[1000,300,300],[600,850],[1000,300],[600,850,300],[850,300,300],[600,600],[600,300,300],[600,600,300,300],[600,600,300],[600,1000],[1000,300,300],[600,850],[1000,300],[600,850,300],[850,300,300],[600,600,300,300],[1000,850],[600,600,300],[600,1000],[1000,300,300],[600,850],[1000,300],[600,850,300],[850,300,300],[600,1000,300],[600,600,300,300],[1000,850],[600,600,300],[600,1000],[1000,300,300],[600,850],[600,850,300],[850,300,300],[600,1000,300],[600,600,300,300],[1000,850],[600,600,300],[600,850,300,300],[600,1000],[1000,300,300],[600,600,850],[600,850],[600,850,300],[850,300,300],[600,1000,300],[600,600,300,300],[1000,850],[600,600,300],[600,850,300,300],[600,1000],[1000,300,300],[600,600,850],[600,850],[600,850,300],[850,300,300],[600,1000,300],[600,600,300,300],[1000,850],[1000,850,300],[600,600,300],[600,850,300,300],[600,1000],[1000,300,300],[600,600,850],[600,1000,300,300],[600,850,300],[600,1000,300],[600,600,300,300],[1000,850],[600,600,1000],[1000,850,300],[600,600,300]],"loads":[400,400,450,450,500,500,550,550,600,600,600,600,650,650,700,700,700,750,750,750,800,800,800,800,800,800,850,850,850,850,850,850,900,900,900,900,900,900,950,950,950,950,950,1000,1000,1000,1000,1000,1000,1000,1000,1050,1050,1050,1050,1050,1050,1050,1100,1100,1100,1100,1100,1100,1100,1100,1100,1150,1150,1150,1150,1150,1150,1150,1150,1150,1200,1200,1200,1200,1200,1200,1200,1200,1200,1200,1250,1250,1250,1250,1250,1250,1250,1250,1250,1300,1300,1300,1300,1300,1300,1300,1300,1300,1300,1350,1350,1350,1350,1350,1350,1350,1350,1350,1400,1400,1400,1400,1400,1400,1400,1400,1400,1400,1400,1450,1450,1450,1450,1450,1450,1450,1450,1450,1450,1450,1450,1500,1500,1500,1500,1500,1500,1500,1500,1500,1500,1500,1500]},"selected":{"id":"1972","type":"Selection"},"selection_policy":{"id":"1973","type":"UnionRenderers"}},"id":"1909","type":"ColumnDataSource"},{"attributes":{"overlay":{"id":"1940","type":"BoxAnnotation"}},"id":"1933","type":"BoxZoomTool"},{"attributes":{"click_policy":"hide","items":[{"id":"1960","type":"LegendItem"},{"id":"1974","type":"LegendItem"}],"location":"top_left","plot":{"id":"1911","subtype":"Figure","type":"Plot"}},"id":"1959","type":"Legend"},{"attributes":{},"id":"1973","type":"UnionRenderers"},{"attributes":{},"id":"1934","type":"SaveTool"},{"attributes":{"label":{"value":"Pareto-Optimal"},"renderers":[{"id":"1964","type":"GlyphRenderer"}]},"id":"1974","type":"LegendItem"},{"attributes":{},"id":"1935","type":"ResetTool"},{"attributes":{"plot":null,"text":"Load Allocation Curve - Diesel"},"id":"1910","type":"Title"},{"attributes":{},"id":"1936","type":"HelpTool"},{"attributes":{},"id":"2034","type":"Selection"},{"attributes":{"callback":null},"id":"1913","type":"DataRange1d"},{"attributes":{"callback":null,"renderers":"auto","tooltips":[["Load [kW]","@loads"],["Cost [$/hr]","@costs"],["Gens","@gen_combos"],["Load Factors","@gen_allocs"]]},"id":"1937","type":"HoverTool"},{"attributes":{},"id":"2035","type":"UnionRenderers"},{"attributes":{"data_source":{"id":"1909","type":"ColumnDataSource"},"glyph":{"id":"1949","type":"Circle"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1950","type":"Circle"},"selection_glyph":null,"view":{"id":"1952","type":"CDSView"}},"id":"1951","type":"GlyphRenderer"},{"attributes":{"callback":null},"id":"1915","type":"DataRange1d"},{"attributes":{},"id":"1917","type":"LinearScale"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"plot":null,"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"1940","type":"BoxAnnotation"},{"attributes":{},"id":"1919","type":"LinearScale"},{"attributes":{"source":{"id":"1909","type":"ColumnDataSource"}},"id":"1952","type":"CDSView"},{"attributes":{"axis_label":"Load [kW]","formatter":{"id":"1955","type":"BasicTickFormatter"},"plot":{"id":"1911","subtype":"Figure","type":"Plot"},"ticker":{"id":"1922","type":"BasicTicker"}},"id":"1921","type":"LinearAxis"},{"attributes":{},"id":"1955","type":"BasicTickFormatter"},{"attributes":{},"id":"1922","type":"BasicTicker"},{"attributes":{},"id":"1957","type":"BasicTickFormatter"},{"attributes":{"plot":{"id":"1911","subtype":"Figure","type":"Plot"},"ticker":{"id":"1922","type":"BasicTicker"}},"id":"1925","type":"Grid"},{"attributes":{"label":{"value":"All Allocation Cases"},"renderers":[{"id":"1951","type":"GlyphRenderer"}]},"id":"1960","type":"LegendItem"},{"attributes":{"axis_label":"Energy Supply Fuel Cost [$/hr]","formatter":{"id":"1957","type":"BasicTickFormatter"},"plot":{"id":"1911","subtype":"Figure","type":"Plot"},"ticker":{"id":"1927","type":"BasicTicker"}},"id":"1926","type":"LinearAxis"},{"attributes":{},"id":"1927","type":"BasicTicker"},{"attributes":{"callback":null,"data":{"x":[400,450,500,550,600,650,700,750,800,850,900,950,1000,1050,1100,1150,1200,1250,1300,1350,1400,1450,1500],"y":{"__ndarray__":"zczMzMxMSECkcD0K1wNLQB+F61G4Pk5AzczMzMy8UEAK16NwPVpSQDMzMzMzA1RArkfhehT+VEDXo3A9CldWQLgehetR+FdAmpmZmZmZWUAK16NwPTpbQOxRuB6F21xAKVyPwvVoXkCPwvUoXP9fQOxRuB6Fu2BApHA9CtdrYUAUrkfhehxiQPYoXI/C7WJAj8L1KFy/Y0BxPQrXo5BkQBSuR+F6XGVAH4XrUbguZkCkcD0K1+NmQA==","dtype":"float64","shape":[23]}},"selected":{"id":"2034","type":"Selection"},"selection_policy":{"id":"2035","type":"UnionRenderers"}},"id":"1961","type":"ColumnDataSource"},{"attributes":{"dimension":1,"plot":{"id":"1911","subtype":"Figure","type":"Plot"},"ticker":{"id":"1927","type":"BasicTicker"}},"id":"1930","type":"Grid"}],"root_ids":["1911"]},"title":"Bokeh Application","version":"1.0.0"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('2176').textContent;
+                  var render_items = [{"docid":"c891b06d-43e5-42eb-bc7a-c0c1e424c1ff","roots":{"1911":"4f1fbec8-9cfe-41fa-8616-31b957bfaaa8"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts > 100) {
+                        console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    
+  </body>
+  
+</html>
